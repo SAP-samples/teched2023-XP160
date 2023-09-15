@@ -9,7 +9,12 @@ variable "region" {
   default     = "us20"
 }
 
-variable "users" {
+variable "subaccount_users" {
+  type = list(string)
+  description = "The list of users with respective rights"
+}
+
+variable "cf_users" {
   type = list(string)
   description = "The list of users with respective rights"
 }

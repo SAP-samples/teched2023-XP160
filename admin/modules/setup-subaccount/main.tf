@@ -37,7 +37,7 @@ resource "btp_subaccount_entitlement" "destination" {
 resource "btp_subaccount_role_collection_assignment" "subaccount-administrators" {
   subaccount_id = btp_subaccount.this.id
   role_collection_name = "Subaccount Administrator"
-  for_each             = toset(var.admins)
+  for_each             = toset(concat(var.admins, ["XP160-${var.user_number}@education.cloud.sap"]))
   user_name            = each.value
   depends_on = [
     btp_subaccount.this
@@ -47,7 +47,7 @@ resource "btp_subaccount_role_collection_assignment" "subaccount-administrators"
 resource "btp_subaccount_role_collection_assignment" "subaccount-service-administrators" {
   subaccount_id = btp_subaccount.this.id
   role_collection_name = "Subaccount Service Administrator"
-  for_each             = toset(var.admins)
+  for_each             = toset(concat(var.admins, ["XP160-${var.user_number}@education.cloud.sap"]))
   user_name            = each.value
   depends_on = [
     btp_subaccount.this
@@ -71,7 +71,10 @@ module "cloudfoundry_space" {
   source              = "../cloudfoundry-space/"
   cf_org_id           = module.cloudfoundry_environment.org_id
   name                = "dev"
-  cf_space_managers   = var.admins
-  cf_space_developers = var.admins
-  cf_space_auditors   = var.admins
+  #cf_space_managers   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  #cf_space_developers = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  #cf_space_auditors   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  cf_space_managers   = var.cf_users
+  cf_space_developers = var.cf_users
+  cf_space_auditors   = var.cf_users
 }
