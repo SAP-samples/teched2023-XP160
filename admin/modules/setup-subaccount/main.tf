@@ -40,9 +40,7 @@ resource "btp_subaccount_role_collection_assignment" "subaccount-administrators"
   role_collection_name = "Subaccount Administrator"
   for_each             = toset(concat(var.admins, ["XP160-${var.user_number}@education.cloud.sap"]))
   user_name            = each.value
-  depends_on = [
-    btp_subaccount.this
-  ]
+  depends_on = [ btp_subaccount.this ]
 }
 # Subaccount Service Administrator
 resource "btp_subaccount_role_collection_assignment" "subaccount-service-administrators" {
@@ -50,13 +48,12 @@ resource "btp_subaccount_role_collection_assignment" "subaccount-service-adminis
   role_collection_name = "Subaccount Service Administrator"
   for_each             = toset(concat(var.admins, ["XP160-${var.user_number}@education.cloud.sap"]))
   user_name            = each.value
-  depends_on = [
-    btp_subaccount.this
-  ]
+  depends_on = [ btp_subaccount.this ]
 }
 
+/*
 ###############################################################################################
-# Create Cloudfoundry environment instance in all subaccounts
+# Create Cloudfoundry environment instance
 ###############################################################################################
 module "cloudfoundry_environment" {
   source = "../envinstance-cloudfoundry/"
@@ -90,5 +87,6 @@ module "create_cf_service_instance_privatelink" {
   cf_space_id  = module.cloudfoundry_space.id
   service_name = "privatelink"
   plan_name    = "standard"
-  parameters   = jsonencode({"resourceId" = "/subscriptions/${var.azure_subscription_id}/resourceGroups/rg/providers/Microsoft.Network/privateLinkServices/<privatelink>"})
+  parameters   = jsonencode({"resourceId" = "${var.s4_resource_id}"})
 }
+*/

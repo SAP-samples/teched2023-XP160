@@ -24,7 +24,7 @@ variable "cf_users" {
   description = "The list of users for Cloudfoundry"
 }
 
-variable "azure_subscription_id" {
+variable "s4_resource_id" {
   type = string
-  description = "The list of users with respective rights"
+  description = "The resource ID of the S/4HANA loadbalancer on Azure"
 }

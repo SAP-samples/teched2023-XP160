@@ -19,7 +19,8 @@ variable "cf_users" {
   description = "The list of users with respective rights"
 }
 
-variable "azure_subscription_id" {
+variable "s4_resource_id" {
   type = string
-  description = "The list of users with respective rights"
+  description = "The resource ID of the S/4HANA loadbalancer on Azure"
+  default = "/subscriptions/XXXXXXXXXXXXXXXXX/resourceGroups/ZZZZZZZZ/providers/Microsoft.Network/privateLinkServices/YYYYYYYYY"
 }
