@@ -78,3 +78,16 @@ module "cloudfoundry_space" {
   cf_space_developers = var.cf_users
   cf_space_auditors   = var.cf_users
 }
+
+######################################################################
+# Create service instance for SAP private link
+######################################################################
+# connectivitiy
+module "create_cf_service_instance_privatelink" {
+  depends_on   = [module.cloudfoundry_space, btp_subaccount_entitlement.privatelink]
+  source       = "../cloudfoundry-service-instance/"
+  cf_space_id  = module.cloudfoundry_space.id
+  service_name = "privatelink"
+  plan_name    = "standard"
+  parameters   = null
+}
