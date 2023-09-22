@@ -12,3 +12,8 @@ output "cloudfoundry_space" {
   value       = module.cloudfoundry_space
   description = "The metadata of the cloudfoundry space."
 }
+
+output "cf_service_instance"{
+  value       = module.create_cf_service_instance_privatelink
+  description = "The metadata of the created cloudfoundry service instance."
+}

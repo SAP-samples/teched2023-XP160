@@ -23,3 +23,8 @@ variable "cf_users" {
   type = list(string)
   description = "The list of users for Cloudfoundry"
 }
+
+variable "azure_subscription_id" {
+  type = string
+  description = "The list of users with respective rights"
+}

@@ -11,6 +11,7 @@ resource "btp_subaccount" "this" {
 # Set all entitlements in the subaccount
 ###############################################################################################
 # Set entitlement for SAP Build Work Zone, standard edition
+
 resource "btp_subaccount_entitlement" "saplaunchpad" {
   subaccount_id = btp_subaccount.this.id
   service_name  = "SAPLaunchpad"
@@ -89,5 +90,5 @@ module "create_cf_service_instance_privatelink" {
   cf_space_id  = module.cloudfoundry_space.id
   service_name = "privatelink"
   plan_name    = "standard"
-  parameters   = null
+  parameters   = jsonencode({"resourceId" = "/subscriptions/${var.azure_subscription_id}/resourceGroups/rg/providers/Microsoft.Network/privateLinkServices/<privatelink>"})
 }
