@@ -1,4 +1,10 @@
+# Terraform specific
 *.env
 .terraform*
 *.tfstate*
 terraform.tfvars
+
+#Local Azure Functions Development - Azurite Storage
+__blobstorage__
+__queuestorage__
+__azurite_db*__.json

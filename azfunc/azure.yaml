@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: azure-functions-tracking
+metadata:
+  template: azure-functions-tracking@0.0.1-beta
+services:
+  azfunc-tracking-status:
+    project: src
+    language: ts
+    host: function
+infra:
+  provider: terraform
