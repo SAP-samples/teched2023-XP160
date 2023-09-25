@@ -32,22 +32,3 @@ variable "sku_name" {
   type        = string
   default     = "Y1"
 }
-
-variable "use_mock_response" {
-  description = "Parameter if Mock response should be used"
-  type        = bool
-  default     = true
-}
-
-variable "tracking_api_endpoint" {
-  description = "HTTP endpoint of the tracking API"
-  type        = string
-  default     = "https://api-test.dhl.com/track/shipments"
-}
-
-variable "tracking_api_key" {
-  description = "API key of tracking API"
-  type        = string
-  default     = "abcdefg12345"
-  sensitive   = true
-}

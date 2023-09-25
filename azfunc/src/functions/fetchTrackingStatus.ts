@@ -1,7 +1,4 @@
 import { app } from "@azure/functions";
-const apiKey = process.env["TRACKING_API_KEY"];
-const trackingUrl = process.env["TRACKING_URL"];
-const useMock = process.env["USE_MOCK"];
 
 app.http("fetchTrackingStatus", {
 	methods: ["GET"],
@@ -31,10 +28,8 @@ app.http("fetchTrackingStatus", {
 });
 
 function getTrackingStatus(trackingId: string) {
-	if (useMock) {
 		const random = Math.floor(Math.random() * 4);
 		return getEntryById(random, trackingId);
-	}
 }
 
 function getEntryById(id: number, trackingId: string) {
@@ -79,6 +74,5 @@ function getEntryById(id: number, trackingId: string) {
 
 	const entry = deliveryStatusMock[id];
 	entry.id = trackingId;
-	//return JSON.stringify(entry);
 	return entry;
 }

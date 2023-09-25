@@ -10,3 +10,9 @@ services:
     host: function
 infra:
   provider: terraform
+#hooks:
+#  postdeploy:
+#    shell: sh
+#    run: ./hooks/postdeploy.sh
+#    continueOnError: false
+#    interactive: true

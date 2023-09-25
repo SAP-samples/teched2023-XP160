@@ -13,19 +13,14 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "resource_token" {
-  description = "A suffix string to centrally mitigate resource name collisions."
+variable "storage_account_tier" {
+  description = "Tier of the storage account"
   type        = string
+  default     = "Standard"
 }
 
-variable "sku_name" {
-  description = "The SKU for the plan."
+variable "storage_account_replication_type" {
+  description = "Replication type of the storage account"
   type        = string
-  default     = "Y1"
-}
-
-variable "os_type" {
-  description = "The O/S type for the App Services to be hosted in this plan."
-  type        = string
-  default     = "Linux"
+  default     = "LRS"
 }
