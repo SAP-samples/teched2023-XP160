@@ -4,22 +4,26 @@
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2022 session called Session ID - Session Title.  
+This repository contains the material for the SAP TechEd 2023 session XP160 - Using Terraform for Cross-Cloud Setup of SAP BTP and Microsoft Azure.
 
 ## Overview
 
-This session introduces attendees to...
+This session introduces attendees to Terraform as the de-facto standard for infrastructure as code.
+You will get hands-on experience with deploying and provisioning your apps running on SAP Business Technology Platform (SAP BTP) that integrate with Microsoft Azure services using the SAP Private Link service. 
+
+Leverage the new Terraform provider for SAP BTP to automate the setup of your SAP BTP accounts along with Terraform for Azure.
 
 ## Requirements
 
-The requirements to follow the exercises in this repository are...
+The requirements to follow the exercises in this repository are:
+
+- Terraform CLI installed on your computer (already the case for the machines available at TechEd 2023)
 
 ## Exercises
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
+These are the exercises you will go through during the hands-on session XP160:
 
-- [Getting Started](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
+- [Exercise 1 - Setup your SAP BTP Subaccount](exercises/ex1/)
     - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
     - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
 - [Exercise 2 - Second Exercise Description](exercises/ex2/)
