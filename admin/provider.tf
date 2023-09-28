@@ -6,13 +6,13 @@ terraform {
     }
     cloudfoundry = {
       source  = "cloudfoundry-community/cloudfoundry"
-      version = "0.51.3"
+      version = "~>0.51.3"
     }
   }
 }
 
 provider "btp" {
-  globalaccount  = var.globalaccount
+  globalaccount = var.globalaccount
 }
 
 // Configuration is described in https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs

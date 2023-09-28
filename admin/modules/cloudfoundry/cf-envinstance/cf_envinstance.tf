@@ -1,3 +1,14 @@
+###
+# Required provider
+###
+terraform {
+  required_providers {
+    btp = {
+      source  = "sap/btp"
+      version = "0.4.0-beta1"
+    }
+  }
+}
 ##
 # The orchestration user needs administration access to the cloud foundry environment.
 ##
@@ -15,7 +26,8 @@ resource "null_resource" "cache_orchestrator" {
 }
 
 ##
-# If the user doesn't provide an environment label, we have to look it up. We take the first matching entry.
+# If the user doesn't provide an environment label, we have to look it up. 
+# We take the first matching entry.
 ##
 data "btp_subaccount_environments" "all" {
   subaccount_id = var.subaccount_id

@@ -15,16 +15,16 @@ variable "region" {
 }
 
 variable "admins" {
-  type = list(string)
+  type        = list(string)
   description = "The list of users with respective admin rights"
 }
 
 variable "cf_users" {
-  type = list(string)
+  type        = list(string)
   description = "The list of users for Cloudfoundry"
 }
 
 variable "s4_resource_id" {
-  type = string
+  type        = string
   description = "The resource ID of the S/4HANA loadbalancer on Azure"
 }

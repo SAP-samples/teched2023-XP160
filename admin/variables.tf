@@ -10,17 +10,17 @@ variable "region" {
 }
 
 variable "subaccount_users" {
-  type = list(string)
+  type        = list(string)
   description = "The list of users with respective rights"
 }
 
 variable "cf_users" {
-  type = list(string)
+  type        = list(string)
   description = "The list of users with respective rights"
 }
 
 variable "s4_resource_id" {
-  type = string
+  type        = string
   description = "The resource ID of the S/4HANA loadbalancer on Azure"
-  default = "/subscriptions/XXXXXXXXXXXXXXXXX/resourceGroups/ZZZZZZZZ/providers/Microsoft.Network/privateLinkServices/YYYYYYYYY"
+  default     = "/subscriptions/XXXXXXXXXXXXXXXXX/resourceGroups/ZZZZZZZZ/providers/Microsoft.Network/privateLinkServices/YYYYYYYYY"
 }
