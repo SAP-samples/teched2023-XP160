@@ -69,14 +69,10 @@ module "appserviceplan" {
 # ------------------------------------------------------------------------------------------------------
 # Deploy Function app
 # ------------------------------------------------------------------------------------------------------
-module "azurefunction" {
-  source                                 = "./modules/function"
-  location                               = var.location
-  rg_name                                = azurerm_resource_group.rg.name
-  tags                                   = azurerm_resource_group.rg.tags
-  storage_account_name                   = module.storage.STORAGE_ACCOUNT_NAME
-  storage_account_access_key             = module.storage.STORAGE_ACCOUNT_ACCESS_KEY
-  application_insights_connection_string = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
-  service_plan_id                        = module.appserviceplan.APPSERVICE_PLAN_ID
-  function_name                          = var.azure_function_name
-}
+#module "azurefunction" {
+#  source                                 = "./modules/function"
+#  storage_account_name                   = module.storage.STORAGE_ACCOUNT_NAME
+#  storage_account_access_key             = module.storage.STORAGE_ACCOUNT_ACCESS_KEY
+#  application_insights_connection_string = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
+#  service_plan_id                        = module.appserviceplan.APPSERVICE_PLAN_ID
+#}

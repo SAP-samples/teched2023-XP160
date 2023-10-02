@@ -36,5 +36,4 @@ variable "sku_name" {
 variable "azure_function_name" {
   description = "The name of Azure Functions"
   type        = string
-  default     = "azfunc-tracking"
 }
