@@ -11,7 +11,7 @@ output "APPLICATIONINSIGHTS_CONNECTION_STRING" {
   sensitive = true
 }
 
-output "AZFUNC_TRACKING_API_URL" {
+output "AZFUNC_APP_URL" {
   value = module.azurefunction.FUNCTION_APP_URL
 }
 

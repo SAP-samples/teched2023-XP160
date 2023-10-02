@@ -78,5 +78,5 @@ module "azurefunction" {
   storage_account_access_key             = module.storage.STORAGE_ACCOUNT_ACCESS_KEY
   application_insights_connection_string = module.applicationinsights.APPLICATIONINSIGHTS_CONNECTION_STRING
   service_plan_id                        = module.appserviceplan.APPSERVICE_PLAN_ID
-  function_name                          = "azfunc-tracking"
+  function_name                          = var.azure_function_name
 }

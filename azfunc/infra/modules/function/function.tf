@@ -21,6 +21,7 @@ resource "azurerm_linux_function_app" "function_app" {
   app_settings = {
     "SCM_DO_BUILD_DURING_DEPLOYMENT"        = "true"
     "APPLICATIONINSIGHTS_CONNECTION_STRING" = var.application_insights_connection_string
+    "AzureWebJobsFeatureFlags"              = "EnableWorkerIndexing"
   }
   site_config {
     ftps_state = "FtpsOnly"

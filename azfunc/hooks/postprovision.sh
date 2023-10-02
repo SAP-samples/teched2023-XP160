@@ -7,20 +7,8 @@ lock_file=
 lock_file_base=/tmp/$(basename $0 .sh)
 
 multiple=0
-if [[ "$1" ]]; then
-    nsingle=$1
-    shift
-else
-    nsingle=10
-fi
-if [[ "$1" ]]; then
-    nmultiple=$1
-    shift
-    if [[ $nmultiple -gt 8 ]]; then nmultiple=8; fi
-else
-    nmultiple=6
-fi
-
+nsingle=5
+nmultiple=5
 
 function colorstr()
 {
@@ -150,8 +138,8 @@ wait $pids
 sleep 1
 
 clear
-center_colorstr $((rows / 2 - 1)) red "Hope you enjoyed the show!"
+center_colorstr $((rows / 2 - 1)) blue "Success - the infrastructure was provisioned via azd!"
 echo
 
-sleep 5
+sleep 3
 clear

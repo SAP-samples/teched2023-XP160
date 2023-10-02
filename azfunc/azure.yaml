@@ -2,7 +2,20 @@
 
 name: azure-functions-tracking
 metadata:
-  template: azure-functions-tracking@0.0.1-beta
+  template: azure-functions-tracking@0.1.0-beta
+hooks:
+  postprovision:
+    posix:
+      shell: sh
+      run: ./hooks/postprovision.sh
+      continueOnError: true
+      interactive: true
+  postdeploy:
+    posix:
+      shell: sh
+      run: ./hooks/postdeploy.sh
+      continueOnError: true
+      interactive: true
 services:
   azfunc-tracking-status:
     project: src
@@ -10,9 +23,3 @@ services:
     host: function
 infra:
   provider: terraform
-#hooks:
-#  postdeploy:
-#    shell: sh
-#    run: ./hooks/postdeploy.sh
-#    continueOnError: false
-#    interactive: true
