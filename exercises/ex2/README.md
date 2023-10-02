@@ -56,7 +56,7 @@ Now it your turn. You will need to complete the tasks described in the following
 
 > **Note** - In case you are running into issues you can always check the sample solution in the `infra_solution` folder.
 
-### Task 0 - Familirize yourself with the configuration
+### Task 0 - Familiarize yourself with the configuration
 
 Before starting with the exercise you should take a look at the configuration files that are provided for you. You will find them in the `infra_exercise` folder.
 
@@ -97,7 +97,7 @@ Save the changes and close the file.
 
 ### Task 2 - Add the Azure Function setup
 
-Go back to the file `main.tf`. At the bottom of the file you find some commented out code that is a placeholder for the Function App creation. 
+Go back to the file `main.tf`. At the bottom of the file you find some commented out code that is a placeholder for the Function App creation.
 
 ```hcl
 # ------------------------------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ Go back to the file `main.tf`. At the bottom of the file you find some commented
 
 Remove the comments and save the file.
 
-Hmmm, this does not look like a complete setup. It seems that we are missing some information. But where can we get it from? 
+Hmmm, this does not look like a complete setup. It seems that we are missing some information. But where can we get it from?
 
 We are using a module here, so first check the module folder for the Azure Functions App which is located under `/azfunc/infra_exercise/modules/function`. Let us first check the variables that need to be set. They are defined in the file `function_variables.tf`.
 
