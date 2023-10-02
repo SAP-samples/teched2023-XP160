@@ -4,15 +4,35 @@ az login
 
 azd login
 
-Initializing an app to run on Azure (azd init)
-
-ERROR: determining current git repository state: failed to get current branch: exit code: 128, stdout: , stderr: fatal: detected dubious ownership in repository at '/workspaces/teched2023-XP160'
-To add an exception for this directory, call:
-
-        git config --global --add safe.directory /workspaces/teched2023-XP160
 
 
-Change RG Group name
+```bash
+azd provision --preview
+```
+
+```bash
+? Enter a new environment name: [? for help]
+```
+Enter:
+
+```bash
+techedxp160-userXXX
+```
+
+
+```bash
+? Select an Azure Subscription to use:  [Use arrows to move, type to filter]
+```
+
+Select the 
+
+```bash
+? Select an Azure location to use:  [Use arrows to move, type to filter]
+```
+
+Enter number
+
+
 
 
 Take a look at the .azure directory

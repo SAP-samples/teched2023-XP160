@@ -23,3 +23,7 @@ services:
     host: function
 infra:
   provider: terraform
+  path: infra_exercise
+#infra:
+#  provider: terraform
+#  path: infra_solution
