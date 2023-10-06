@@ -36,8 +36,9 @@
 	// you should place the following environment variables in that file:
 	// - BTP_USERNAME
 	// - BTP_PASSWORD
-	"runArgs": [
+	/*"runArgs": [
 		"--env-file",
 		".devcontainer/devcontainer.env"
 	]
+	*/
 }
