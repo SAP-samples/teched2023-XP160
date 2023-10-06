@@ -10,8 +10,15 @@ terraform {
   }
 }
 
+# ------------------------------------------------------------------------------------------------------
+# Define local variables for this module
+# ------------------------------------------------------------------------------------------------------
 locals {
-  subaccount_name = "Rui-admin-test-XP160-${format("%03d", var.user_number)}"
+  name_prefix      = "te2023-XP160"
+  name_suffix      = "${format("%03d", var.user_number)}"
+  subaccount_name  = "subaccount-${local.name_prefix}-${local.name_suffix}"
+  cf_instance_name = lower("cf-${local.name_prefix}-${local.name_suffix}")
+  cf_org_name      = lower("cf-org-${local.name_prefix}-${local.name_suffix}")
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -70,10 +77,11 @@ resource "btp_subaccount_role_collection_assignment" "subaccount-service-adminis
 # Create Cloudfoundry environment instance
 # ------------------------------------------------------------------------------------------------------
 module "cloudfoundry_environment" {
-  source = "../cloudfoundry/cf-envinstance"
-  subaccount_id = btp_subaccount.this.id
-  instance_name         = lower("cf-inst-te2023-${var.user_number}")
-  cloudfoundry_org_name = lower("cf-org-te2023-${var.user_number}")
+  source                = "../cloudfoundry/cf-envinstance"
+  subaccount_id         = btp_subaccount.this.id
+  instance_name         = local.cf_instance_name
+  cloudfoundry_org_name = local.cf_org_name
+  cf_org_members        = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
 }
 
 # ------------------------------------------------------------------------------------------------------

@@ -9,21 +9,6 @@ terraform {
     }
   }
 }
-##
-# The orchestration user needs administration access to the cloud foundry environment.
-##
-data "btp_whoami" "orchestrator" {}
-
-resource "null_resource" "cache_orchestrator" {
-  triggers = {
-    id    = data.btp_whoami.orchestrator.id
-    email = data.btp_whoami.orchestrator.email
-  }
-
-  lifecycle {
-    ignore_changes = all
-  }
-}
 
 ##
 # If the user doesn't provide an environment label, we have to look it up. 
@@ -53,11 +38,5 @@ resource "btp_subaccount_environment_instance" "cloudfoundry" {
 
   parameters = jsonencode({
     instance_name = var.cloudfoundry_org_name
-    users = [
-      {
-        id    = null_resource.cache_orchestrator.triggers.id
-        email = null_resource.cache_orchestrator.triggers.email
-      }
-    ]
   })
 }
