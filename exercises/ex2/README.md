@@ -116,7 +116,7 @@ Remove the comments and save the file.
 
 Hmmm, this does not look like a complete setup. It seems that we are missing some information. But where can we get it from?
 
-We are using a module here, so first check the module folder for the Azure Functions App which is located under `/azfunc/infra_exercise/modules/function`. Let us first check the variables that need to be set. They are defined in the file `function_variables.tf`.
+We are using a module here, so first check the module folder for the Azure Functions App which is located under `code/azfunc/infra_exercise/modules/function`. Let us first check the variables that need to be set. They are defined in the file `function_variables.tf`.
 
 Looks like the following parameters are missing in the `main.tf` file:
 
