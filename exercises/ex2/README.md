@@ -19,11 +19,11 @@ Both steps will be handled in a self-contained way by using the *Azure Developer
 
 ### What is provided for you?
 
-As in exercise one you do not start from scratch. All CLI tools are already installed and the source code of the Azure Function is available. You find all necessary files in the `azfunc` folder.
+As in exercise one you do not start from scratch. All CLI tools are already installed and the source code of the Azure Function is available. You find all necessary files in the `code/azfunc` folder.
 
 The file structure looks like this:
 
-- `azfunc`: Root folder that comprises the complete `azd` project
+- `code/azfunc`: Root folder that comprises the complete `azd` project
   - `azure.yaml`: The `azd` manifest file
   - `src`: The folder that contains the source code of the Azure Function
   - `infra_exercise`: The folder that contains the infrastructure setup for the exercise
