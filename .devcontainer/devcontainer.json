@@ -25,7 +25,7 @@
 	},
 	"remoteUser": "node",
 	//Ensure that workspace is configured as safe directory and enable alpha feature for Terraform usage
-	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160 && azd config set alpha.terraform on",
+	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160",
 	"forwardPorts": [
 		7071
 	],

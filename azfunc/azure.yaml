@@ -3,6 +3,8 @@
 name: azure-functions-tracking
 metadata:
   template: azure-functions-tracking@0.1.0-beta
+requiredVersions:
+  azd: ">= 1.4.0"
 hooks:
   postprovision:
     posix:
