@@ -3,7 +3,6 @@ output "subaccount_id" {
   description = "The ID of the subaccount."
 }
 
-/*
 output "cloudfoundry_instance" {
   value       = module.cloudfoundry_environment
   description = "The metadata of the cloudfoundry instance."
@@ -18,4 +17,3 @@ output "cf_service_instance"{
   value       = module.create_cf_service_instance_privatelink
   description = "The metadata of the created cloudfoundry service instance."
 }
-*/

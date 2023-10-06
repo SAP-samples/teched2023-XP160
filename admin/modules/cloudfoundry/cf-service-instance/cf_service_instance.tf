@@ -18,7 +18,7 @@ data "cloudfoundry_service" "service" {
 }
 
 ###
-# Craete a CF service instance
+# Create a CF service instance
 ###
 resource "cloudfoundry_service_instance" "service" {
   name         = var.service_name

@@ -63,12 +63,12 @@ resource "btp_subaccount_role_collection_assignment" "subaccount-service-adminis
   depends_on           = [btp_subaccount.this]
 }
 
-/*
+
 ###
 # Create Cloudfoundry environment instance
 ###
 module "cloudfoundry_environment" {
-  source = "../cloudfoundry/cf-envinstance
+  source = "../cloudfoundry/cf-envinstance"
   subaccount_id = btp_subaccount.this.id
   instance_name         = lower("cf-inst-te2023-${var.user_number}")
   cloudfoundry_org_name = lower("cf-org-te2023-${var.user_number}")
@@ -101,4 +101,4 @@ module "create_cf_service_instance_privatelink" {
   plan_name    = "standard"
   parameters   = jsonencode({"resourceId" = "${var.s4_resource_id}"})
 }
-*/
+

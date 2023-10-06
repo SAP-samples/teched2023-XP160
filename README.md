@@ -24,9 +24,17 @@ The requirements to follow the exercises in this repository are:
 These are the exercises you will go through during the hands-on session XP160:
 
 - [Exercise 1 - Setup your SAP BTP Subaccount](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
+    - Create privatelink service instance + service key (CF)
+    - Create destination service + destination
+    - Create SAP Build Workzone, standard edition subscription
+    - Deploy UI5 app in Workzone
+
+- [Exercise 2 - Azure developer setup](exercises/ex2/)
+    - Deploy Azure resources
+    - Add additional destination to Azure resource
+    - Deploy UI5 app
+
+
     - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
     - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
 
