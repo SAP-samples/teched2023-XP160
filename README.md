@@ -18,6 +18,12 @@ Leverage the new Terraform provider for SAP BTP to automate the setup of your SA
 The requirements to follow the exercises in this repository are:
 
 - Terraform CLI installed on your computer (already the case for the machines available at TechEd 2023)
+ 
+
+**Note:**
+The setup for this exercise (e.g. setting up the individual Subaccounts, setting the entitlements, deploying Cloud Foundry services, ...) were also all done leveraging the Terraform provider for SAP BTP. You can find the scripts [here](code/admin/)
+
+ 
 
 ## Exercises
 
