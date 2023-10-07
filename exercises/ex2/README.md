@@ -52,7 +52,7 @@ This will trigger a login flow via your browser. After successful login you are 
 
 ## Exercise
 
-Now it your turn. You will need to complete the tasks described in the following sections to successfully deploy your Azure Function.
+Now it is your turn. You will need to complete the tasks described in the following sections to successfully deploy your Azure Function.
 
 > **Note** - In case you are running into issues you can always check the sample solution in the `infra_solution` folder.
 
