@@ -1,22 +1,17 @@
-variable "globalaccount" {
+variable "subaccount_id" {
   type        = string
-  description = "The globalaccount subdomain where the sub account shall be created."
+  description = "The subaccount id of the subaccount."
+}
+
+variable "cf_org_id" {
+  type        = string
+  description = "The Cloudfoundry org id in the subaccount."
 }
 
 variable "region" {
   type        = string
   description = "The region where the sub account shall be created in."
   default     = "us20"
-}
-
-variable "subaccount_users" {
-  type        = list(string)
-  description = "The list of users with respective rights"
-}
-
-variable "cf_users" {
-  type        = list(string)
-  description = "The list of users with respective rights"
 }
 
 variable "s4_resource_id" {
