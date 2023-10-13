@@ -1,0 +1,44 @@
+{
+    "name": "salesorder-navigator",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap-cloud-sdk/http-client": "^3.6.0",
+        "@sap-cloud-sdk/resilience": "^3.6.0",
+        "@sap/cds": "^7",
+        "@sap/cds-dk": "^7",
+        "@sap/xssec": "^3.3.5",
+        "express": "^4",
+        "passport": "^0.6.0"
+    },
+    "devDependencies": {
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.108.16",
+        "mbt": "~1.2.24",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "npx cds run",
+        "start-hybrid": "cds watch --profile hybrid",
+        "build": "mbt build --mtar archive",
+        "undeploy": "cf undeploy salesorder-navigator --delete-services --delete-service-keys --delete-service-brokers",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "cds": {
+        "requires": {
+            "gwsample": {
+                "kind": "odata-v2",
+                "model": "srv/external/gwsample",
+                "[production]": {
+                    "credentials": {
+                        "destination": "s4-on-azure",
+                        "path": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC"
+                    }
+                }
+            }
+        }
+    }
+}

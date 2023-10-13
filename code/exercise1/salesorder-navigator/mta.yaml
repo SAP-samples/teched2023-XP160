@@ -1,0 +1,42 @@
+_schema-version: '3.1'
+ID: salesorder-navigator
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx cds build --production
+modules:
+  - name: salesorder-navigator-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: privatelink
+      - name: salesorder-navigator-destination
+
+resources:
+  # PrivateLink Service
+  - name: privatelink
+    parameters:
+      service: privatelink
+      service-name: privatelink
+      service-plan: standard
+    type: org.cloudfoundry.managed-service
+  # Destination Service
+  - name: salesorder-navigator-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
