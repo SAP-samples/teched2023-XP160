@@ -8,3 +8,12 @@ terraform.tfvars
 __blobstorage__
 __queuestorage__
 __azurite_db*__.json
+
+.gen/
+_out/
+dist/
+edmx/
+gen/
+mta_archives/
+node_modules/
+target/

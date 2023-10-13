@@ -21,11 +21,13 @@
         "rimraf": "^3.0.2"
     },
     "scripts": {
-        "start": "npx cds run",
+        "start": "cds-serve",
         "start-hybrid": "cds watch --profile hybrid",
-        "build": "mbt build --mtar archive",
+        "build:cf": "mbt build --mtar archive",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "undeploy": "cf undeploy salesorder-navigator --delete-services --delete-service-keys --delete-service-brokers",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-capui": "cds watch --open capui/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
@@ -37,8 +39,12 @@
                         "destination": "s4-on-azure",
                         "path": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC"
                     }
-                }
+                },
+                "auth": "dummy"
             }
         }
-    }
+    },
+    "sapux": [
+        "app/capui"
+    ]
 }
