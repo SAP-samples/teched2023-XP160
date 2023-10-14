@@ -1,44 +1,40 @@
 # Exercise 1 - Setup your SAP BTP Supaccount
 
-In this exercise, we will create...
+In this exercise, we will connect an UI5 app running on SAP BTP to an SAP S/4HANA Cloud system running on Microsoft Azure.
 
-## Exercise 1.1: Get the code for this session into VS Code
+## Exercise 1.1: Create service instance for SAP private link 
 
-1. Open VS Code on your machine.
+xxxx.
 
-2. Open the [GitHub repository for XP160](https://github.com/SAP-samples/teched2023-XP160).
+![](/exercises/exercise1/images/01_01_01.png)
 
-![](/exercises/ex1/images/01_01_02.png)
+## Exercise 1.2: Create service key for private link
 
-3. Press the `Code` button and click on the copy-and-paste icon on the right of the link.
+xxxx.
 
-![](/exercises/ex1/images/01_01_03.png)
+![](/exercises/exercise1/images/01_01_01.png)
 
-4. Switch to VS Code and click on `Clone Git Repository`
- 
-![](/exercises/ex1/images/01_01_04.png)
 
-5. Paste the link you've copied (e.g. `https://github.com/SAP-samples/teched2023-XP160`) from step 3 into the input field and hit the `Enter` key.
+## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system
 
-![](/exercises/ex1/images/01_01_05.png)
+xxxx.
 
-6. Select a place in the folder `XXXX`
+![](/exercises/exercise1/images/01_01_01.png)
 
-7. Now you should see the code inside VS Code.
+## Exercise 1.4: Setup SAP Build Workzone, standard edition
 
-## Exercise 1.2: get the ID of your subaccount
+xxxx.
 
-1. Get the credentials from the instructor of this hands-on session
+![](/exercises/exercise1/images/01_01_01.png)
 
-    You will get the username and your password from the session instructors. Each participant will get access to one BTP subaccount.
 
-2. Open the [SAP BTP global account for XP160](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/a0ab1ce3-9dab-48b8-9122-524f7fde1f28/) in the web browser of your machine
-    You will have to use the credentials to login provided to you.
-![List of Subaccounts](/exercises/ex1/images/01_01_02a-Subaccounts.png)
+## Exercise 1.5: Deploy the UI5 app
 
-3. Select your sub account and copy the `Subaccount ID` into the clipboard.
+xxxx.
 
-![](/exercises/ex1/images/01_02_03.png)
+![](/exercises/exercise1/images/01_01_01.png)
+
+
 
 
 ## Summary

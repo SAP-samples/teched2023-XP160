@@ -30,6 +30,11 @@ Prior the exercises you will be given an [introduction to Terraform and the goal
 
 These are the exercises you will go through during the hands-on session XP160:
 
+- [Exercise 0 - Prepare your development environment](exercises/exercise0/)
+    - Create your GitHub Codespace
+    - Get your BTP user credentials
+    - Get your BTP subaccount ID
+
 - [Exercise 1 - Setup your SAP BTP Subaccount](exercises/exercise1/)
     - Create privatelink service instance + service key (CF)
     - Create destination service + destination
