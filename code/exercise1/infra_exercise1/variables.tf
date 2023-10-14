@@ -19,3 +19,13 @@ variable "s4_resource_id" {
   description = "The resource ID of the S/4HANA loadbalancer on Azure"
   default     = "/subscriptions/XXXXXXXXXXXXXXXXX/resourceGroups/ZZZZZZZZ/providers/Microsoft.Network/privateLinkServices/YYYYYYYYY"
 }
+
+variable "globalaccount" {
+  type        = string
+  description = "The globalaccount subdomain where the sub account shall be created."
+}
+
+variable "username" {
+  type        = string
+  description = "The user that should be assigned all necessary roles."
+}
