@@ -70,13 +70,41 @@ variable "s4_resource_id" {
 
 **You are now ready for the first steps in Terraform**
 
-## Exercise 1.1: Create service instance for SAP private link 
-
 Switch to the terminal and type-in the following commands followed by hitting the `return` key:
 
 ```bash
 terraform init
 ```
+
+You will get an output similar to this:
+
+![](/exercises/exercise1/images/01_01_03.png)
+
+This step fetches all Terraform providers that the Terraform CLI has detected in the Terraform scripts.
+
+
+## Exercise 1.1: Create service instance for SAP private link 
+
+In a next step we will see how Terraform is `plan`ing the scripts. Type-in the following commands followed by hitting the `return` key:
+
+```bash
+terraform plan
+```
+
+You should see a list of the planned steps for the Terraform script.
+
+  > **Note** - If you get an error message here, this means, that you might not have completed the steps before correctly.
+
+
+In the final next step we will see how Terraform will apply the `plan` to your infrastrucure. Type-in the following commands followed by hitting the `return` key:
+
+```bash
+terraform apply
+```
+
+When asked, if you really want to execute the plan, you should confirm by typing `yes` and hitting the `return` key.
+
+Once the script is finished successfully, you should see the created private link instance in your subaccount.
 
 ## Exercise 1.2: Create service key for private link
 
