@@ -10,7 +10,7 @@ data "cloudfoundry_space" "dev" {
 # 1.1.2 Create service instance for SAP private link
 # ------------------------------------------------------------------------------------------------------
 module "create_cf_service_instance_privatelink" {
-  source       = "../admin/modules/cloudfoundry/cf-service-instance"
+  source       = "../../admin/modules/cloudfoundry/cf-service-instance"
   cf_space_id  = data.cloudfoundry_space.dev.id
   service_name = "privatelink"
   plan_name    = "standard"
@@ -30,7 +30,7 @@ resource "cloudfoundry_service_key" "privatelink" {
 # 1.3.0 Create destination service + destination to S/4HANA Cloud system
 # ------------------------------------------------------------------------------------------------------
 # module "create_cf_service_instance_destination" {
-#   source       = "../admin/modules/cloudfoundry/cf-service-instance"
+#   source       = "../../admin/modules/cloudfoundry/cf-service-instance"
 #   cf_space_id  = data.cloudfoundry_space.dev.id
 #   service_name = "destination"
 #   plan_name    = "lite"
