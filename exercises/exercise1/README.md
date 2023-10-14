@@ -104,33 +104,31 @@ terraform apply
 
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hitting the `return` key.
 
-Once the script is finished successfully, you should see the created private link instance in your subaccount.
+Once the script is finished successfully, **you should see the created private link instance in your subaccount**.
+
+![](/exercises/exercise1/images/01_01_04.png)
 
 ## Exercise 1.2: Create service key for private link
 
 xxxx.
 
-![](/exercises/exercise1/images/01_01_01.png)
 
 
 ## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system
 
 xxxx.
 
-![](/exercises/exercise1/images/01_01_01.png)
 
 ## Exercise 1.4: Setup SAP Build Workzone, standard edition
 
 xxxx.
 
-![](/exercises/exercise1/images/01_01_01.png)
 
 
 ## Exercise 1.5: Deploy the UI5 app
 
 xxxx.
 
-![](/exercises/exercise1/images/01_01_01.png)
 
 
 
