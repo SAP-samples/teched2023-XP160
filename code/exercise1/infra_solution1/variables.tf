@@ -16,7 +16,7 @@ variable "cf_org_id" {
 variable "region" {
   type        = string
   description = "The region where the sub account shall be created in."
-  default     = "us20"
+  default     = ""
 }
 
 variable "s4_resource_id" {
@@ -28,4 +28,10 @@ variable "s4_resource_id" {
 variable "username" {
   type        = string
   description = "The user that should be assigned all necessary roles."
+}
+
+variable "s4_connection_pw" {
+  type        = string
+  description = "Password for the destination to the S/4HANA system on Azure"
+  sensitive   = true
 }
