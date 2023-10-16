@@ -13,3 +13,9 @@ output "cf_privatelink_service_key" {
   sensitive   = true
   description = "The details of the service key for the privatelink service instance in Cloudfoundry environment."
 }
+
+output "cf_service_instance_destination" {
+  value       = module.create_cf_service_instance_destination
+  description = "The details of the destination service instance in Cloudfoundry environment."
+  sensitive   = true
+}
