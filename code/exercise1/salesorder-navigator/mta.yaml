@@ -9,6 +9,7 @@ modules:
   requires:
   - name: privatelink
   - name: salesorder-navigator-destination
+  - name: uaa_salesorder-navigator
   provides:
   - name: srv-api
     properties:
@@ -17,11 +18,41 @@ modules:
     buildpack: nodejs_buildpack
   build-parameters:
     builder: npm
+- name: salesorder-navigator-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: salesorder-navigator-destination
+    parameters:
+      content-target: true
+  - name: salesorder-navigator_html_repo_host
+    parameters:
+      service-key:
+        name: salesorder-navigator_html_repo_host-key
+  - name: uaa_salesorder-navigator
+    parameters:
+      service-key:
+        name: uaa_salesorder-navigator-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: managedappTechEd_salesorder_navigator_html_repo_host
+          ServiceInstanceName: salesorder-navigator-html5-app-host-service
+          ServiceKeyName: salesorder-navigator_html_repo_host-key
+          sap.cloud.service: managedappTechEd
+        - Authentication: OAuth2UserTokenExchange
+          Name: managedappTechEd_uaa_salesorder_navigator
+          ServiceInstanceName: salesorder-navigator-xsuaa-service
+          ServiceKeyName: uaa_salesorder-navigator-key
+          sap.cloud.service: managedappTechEd
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
 - name: salesorder-navigator-app-content
   type: com.sap.application.content
   path: .
   requires:
-  - name: salesorder-navigator-repo-host
+  - name: salesorder-navigator_html_repo_host
     parameters:
       content-target: true
   build-parameters:
@@ -52,7 +83,7 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      HTML5Runtime_enabled: false
+      HTML5Runtime_enabled: true
       init_data:
         instance:
           destinations:
@@ -61,23 +92,36 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: salesorder-navigator-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
           existing_destinations_policy: update
     service: destination
     service-plan: lite
-- name: salesorder-navigator-repo-host
+  requires:
+  - name: srv-api
+- name: salesorder-navigator_html_repo_host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: salesorder-navigator-html5-srv
+    service-name: salesorder-navigator-html5-app-host-service
     service-plan: app-host
-- name: salesorder-navigator_html_repo_runtime
+- name: uaa_salesorder-navigator
   type: org.cloudfoundry.managed-service
   parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
+    config:
+      tenant-mode: dedicated
+      xsappname: salesorder-navigator-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: salesorder-navigator-xsuaa-service
+    service-plan: application
 parameters:
   deploy_mode: html5-repo
-  enable-parallel-deployments: true
 build-parameters:
   before-all:
   - builder: custom

@@ -10,9 +10,9 @@
         "@sap-cloud-sdk/resilience": "^3.6.0",
         "@sap/cds": "^7",
         "@sap/cds-dk": "^7",
-        "@sap/xssec": "^3.3.5",
+        "@sap/xssec": "^3",
         "express": "^4",
-        "passport": "^0.6.0"
+        "passport": "^0"
     },
     "devDependencies": {
         "@sap/cds-dk": "^7",
@@ -39,8 +39,10 @@
                         "destination": "s4-on-azure",
                         "path": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC"
                     }
-                },
-                "auth": "dummy"
+                }
+            },
+            "[production]": {
+                "auth": "xsuaa"
             }
         }
     },
