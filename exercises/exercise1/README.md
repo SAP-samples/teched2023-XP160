@@ -1,4 +1,4 @@
-# Exercise 1 - Setup your SAP BTP Supaccount
+# Exercise 1 - Setup your SAP BTP Subaccount
 
 In this exercise, we will connect an UI5 app running on SAP BTP to an SAP S/4HANA Cloud system running on Microsoft Azure.
 

@@ -2,26 +2,26 @@
 # 1.1.1 Fetch the details around the available Cloudfoundy space called "dev"
 # ------------------------------------------------------------------------------------------------------
 data "cloudfoundry_space" "dev" {
-    name = "dev"
-    org = var.cf_org_id
+  name = "dev"
+  org  = var.cf_org_id
 }
 
 # ------------------------------------------------------------------------------------------------------
 # 1.1.2 Create service instance for SAP private link
 # ------------------------------------------------------------------------------------------------------
 module "create_cf_service_instance_privatelink" {
-  source       = "../admin/modules/cloudfoundry/cf-service-instance"
+  source       = "../../admin/modules/cloudfoundry/cf-service-instance"
   cf_space_id  = data.cloudfoundry_space.dev.id
   service_name = "privatelink"
   plan_name    = "standard"
-  parameters   = jsonencode({"resourceId" = "${var.s4_resource_id}"})
+  parameters   = jsonencode({ "resourceId" = "${var.s4_resource_id}" })
 }
 
 # ------------------------------------------------------------------------------------------------------
 # 1.2.0 Create service key for private link
 # ------------------------------------------------------------------------------------------------------
 resource "cloudfoundry_service_key" "privatelink" {
-  name = "privatelink_cf_service_key"
+  name             = "privatelink_cf_service_key"
   service_instance = module.create_cf_service_instance_privatelink.id
 }
 
@@ -29,24 +29,27 @@ resource "cloudfoundry_service_key" "privatelink" {
 # 1.3.0 Create destination service + destination to S/4HANA Cloud system
 # ------------------------------------------------------------------------------------------------------
 module "create_cf_service_instance_destination" {
-  source       = "../admin/modules/cloudfoundry/cf-service-instance"
+  source       = "../../admin/modules/cloudfoundry/cf-service-instance"
   cf_space_id  = data.cloudfoundry_space.dev.id
   service_name = "destination"
   plan_name    = "lite"
   parameters = jsonencode({
-    HTML5Runtime_enabled = true
-    init_data = {
-      subaccount = {
-        existing_destinations_policy = "update"
-        destinations = [
+    "HTML5Runtime_enabled" : "true",
+    "init_data" : {
+      "instance" : {
+        "existing_destinations_policy" : "update",
+        "destinations" : [
           {
-            Name                     = "SAP-Build-Apps-Runtime"
-            Type                     = "HTTP"
-            Description              = "Endpoint to SAP S/4HANA Cloud System"
-            URL                      = "https://sap.com"
-            ProxyType                = "Internet"
-            Authentication           = "NoAuthentication"
-            "HTML5.ForwardAuthToken" = true
+            "Authentication"           = "BasicAuthentication",
+            "Name"                     = "s4-on-azure",
+            "Description"              = "SAP S/4HANA Connection via Private Link",
+            "ProxyType"                = "PrivateLink",
+            "Type"                     = "HTTP",
+            "URL"                      = "http://93549d77-6851-4178-ba3c-18720c5e5638.p3.pls.sap.internal:50000",
+            "User"                     = "BPINST"
+            "Password"                 = "${var.s4_connection_pw}"
+            "HTML5.DynamicDestination" = "true"
+            "sap-client"               = "100"
           }
         ]
       }
@@ -73,4 +76,18 @@ resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
   role_collection_name = "Launchpad_Admin"
   user_name            = var.username
   depends_on           = [btp_subaccount_subscription.build_workzone]
+}
+
+# ------------------------------------------------------------------------------------------------------
+# 1.4.3 Deploy Cloud Foundry App via cf deploy
+# ------------------------------------------------------------------------------------------------------
+resource "null_resource" "cf_app_deploy" {
+  provisioner "local-exec" {
+    command = "cf login -a https://api.cf.${var.region}.hana.ondemand.com -u ${var.username} -p ${var.cf_password}"
+  }
+
+  provisioner "local-exec" {
+    command = "cf deploy ../salesorder-navigator/mta.tar"
+  }
+
 }

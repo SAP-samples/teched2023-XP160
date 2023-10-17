@@ -1,6 +1,12 @@
 {
 	"name": "Terraform provider for SAP BTP - with env file",
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
+	"build": {
+        "dockerfile": "Dockerfile",
+		"args": {
+            "VARIANT": "bullseye"
+        }
+    },
+	//"image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {},
@@ -25,7 +31,7 @@
 	},
 	"remoteUser": "node",
 	//Ensure that workspace is configured as safe directory and enable alpha feature for Terraform usage
-	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160",
+	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160 && cf install-plugin multiapps -f",
 	"forwardPorts": [
 		7071
 	],
@@ -36,9 +42,8 @@
 	// you should place the following environment variables in that file:
 	// - BTP_USERNAME
 	// - BTP_PASSWORD
-	/*"runArgs": [
-		"--env-file",
-		".devcontainer/devcontainer.env"
-	]
-	*/
+	//"runArgs": [
+	//	"--env-file",
+	//	".devcontainer/devcontainer.env"
+	//]
 }

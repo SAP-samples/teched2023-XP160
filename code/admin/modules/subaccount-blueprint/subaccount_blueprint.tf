@@ -7,6 +7,10 @@ terraform {
       source  = "sap/btp"
       version = "0.5.0-beta1"
     }
+    cloudfoundry = {
+      source  = "cloudfoundry-community/cloudfoundry"
+      version = "~>0.51.3"
+    }
   }
 }
 
@@ -15,10 +19,10 @@ terraform {
 # ------------------------------------------------------------------------------------------------------
 locals {
   name_prefix      = "te2023-XP160"
-  name_suffix      = "${format("%03d", var.user_number)}"
-  subaccount_name  = "subaccount-${local.name_prefix}-${local.name_suffix}"
+  name_suffix      = format("%03d", var.user_number)
+  subaccount_name  = "dryrun-${local.name_prefix}-${local.name_suffix}"
   cf_instance_name = lower("cf-${local.name_prefix}-${local.name_suffix}")
-  cf_org_name      = lower("cf-org-${local.name_prefix}-${local.name_suffix}")
+  cf_org_name      = lower("cforg-${local.name_prefix}-${local.name_suffix}")
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -53,6 +57,13 @@ resource "btp_subaccount_entitlement" "destination" {
   plan_name     = "lite"
 }
 
+resource "btp_subaccount_entitlement" "cfmemory" {
+  subaccount_id = btp_subaccount.this.id
+  service_name  = "APPLICATION_RUNTIME"
+  plan_name     = "MEMORY"
+  amount        = 1
+}
+
 # ------------------------------------------------------------------------------------------------------
 # Assign the subaccount roles to the users
 # ------------------------------------------------------------------------------------------------------
@@ -82,6 +93,7 @@ module "cloudfoundry_environment" {
   instance_name         = local.cf_instance_name
   cloudfoundry_org_name = local.cf_org_name
   cf_org_members        = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  depends_on            = [btp_subaccount_entitlement.cfmemory]
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -94,7 +106,4 @@ module "cloudfoundry_space" {
   cf_space_managers   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
   cf_space_developers = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
   cf_space_auditors   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
-  #cf_space_managers   = var.cf_users
-  #cf_space_developers = var.cf_users
-  #cf_space_auditors   = var.cf_users
 }
