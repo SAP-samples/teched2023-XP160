@@ -1,7 +1,5 @@
 # Exercise 0 - Prepare your development environment
 
-In this workshop, we will connect an UI5 app running on SAP BTP to an SAP S/4HANA Cloud system running on Microsoft Azure. 
-
 ## Exercise 0.1: Get the code for this session into VS Code
 
 We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as integrated development environment for this workshop. Access the Codespace following these steps:
