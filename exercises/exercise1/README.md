@@ -137,5 +137,5 @@ xxxx.
 
 You've now confirmed access to your Subaccount. We will  continue to use this space and deploy and SAP Fiori app which is connected to an SAP System running on Azure. Since both the SAP Business Technology Platform and the SAP system is running on Azure, we can use SAP Private Link Service to make the connection even more secure and ensuring that data never leaves the Azure backbone.  
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+Continue to - [Exercise 2](../exercise2/README.md)
 

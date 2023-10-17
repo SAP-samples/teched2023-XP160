@@ -44,5 +44,5 @@ In this exercise, we will connect an UI5 app running on SAP BTP to an SAP S/4HAN
 
 You've now prepared your development environment and have all information to finally start using Terraform.  
 
-Continue to - [Exercise 1 - Exercise 2 Description](../ex2/README.md)
+Continue to - [Exercise 1](../exercise1/README.md)
 
