@@ -24,7 +24,6 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 
     ![Screenshot of GitHub Codespace view on the respository XP160](/exercises/exercise0/images/00_01_04.png)
 
-
 ## Exercise 0.2: Get the ID of your SAP BTP subaccount
 
 1. Get the credentials (username and password) from the instructor of this hands-on session. Each participant will get access to one SAP BTP subaccount.
@@ -35,11 +34,10 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 
 3. Select your sub account and copy the `Subaccount ID` into the clipboard.
 
-   ![Screenshot of SAP BTP Subaccount overview](/exercises/exercise0/images/00_02_02.png)
-
+    ![Screenshot of SAP BTP Subaccount overview](/exercises/exercise0/images/00_02_02.png)
 
 ## Summary
 
 You've now prepared your development environment and have all information to finally start using Terraform.  
 
-Continue to - [Exercise 1](../exercise1/README.md)
+Continue to - [Exercise 1 - Setup your SAP BTP Subaccount](../exercise1/README.md)

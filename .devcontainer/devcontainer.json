@@ -1,5 +1,5 @@
 {
-	"name": "Terraform provider for SAP BTP - with env file",
+	"name": "Devcontainer TechEd 2023 - XP160",
 	"build": {
         "dockerfile": "Dockerfile",
 		"args": {

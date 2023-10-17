@@ -69,7 +69,7 @@ variable "region" {
 
 Look for the section with the variable `s4_resource_id` and change the *default value* to the value, that the session instructors will give you.
 
-```
+```terraform
 variable "s4_resource_id" {
   type        = string
   description = "The resource ID of the S/4HANA loadbalancer on Azure"
@@ -81,7 +81,7 @@ variable "s4_resource_id" {
 
 Look for the section with the variable `globalaccount` and change the *default value* to the value of the subdomain of the global account.
 
-```
+```terraform
 variable "globalaccount" {
   type        = string
   description = "The globalaccount subdomain where the sub account shall be created."
@@ -131,26 +131,17 @@ Once the script is finished successfully, **you should see the created private l
 
 xxxx.
 
-
-
 ## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system
 
 xxxx.
-
 
 ## Exercise 1.4: Setup SAP Build Workzone, standard edition
 
 xxxx.
 
-
-
 ## Exercise 1.5: Deploy the UI5 app
 
 xxxx.
-
-
-
-
 
 ## Summary
 
