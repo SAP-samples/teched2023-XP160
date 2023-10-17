@@ -23,7 +23,7 @@ As in exercise one you do not start from scratch. All CLI tools are already inst
 
 The file structure looks like this:
 
-- `code/azfunc`: Root folder that comprises the complete `azd` project
+- `code/exercise2/`: Root folder that comprises the complete `azd` project
   - `azure.yaml`: The `azd` manifest file
   - `src`: The folder that contains the source code of the Azure Function
   - `infra_exercise`: The folder that contains the infrastructure setup for the exercise
@@ -37,7 +37,7 @@ Before starting with the exercise you will need to authenticate against your Azu
 To do so open a terminal and key in:
 
 ```bash
-azd login
+azd auth login
 ```
 
 This will trigger a login flow via your browser. After successful login you will be able to use the `azd` CLI.

@@ -39,7 +39,7 @@ These are the exercises you will go through during the hands-on session XP160:
     - Create privatelink service instance + service key (CF)
     - Create destination service + destination
     - Create SAP Build Workzone, standard edition subscription
-    - Deploy UI5 app in Workzone
+    - Deploy UI5 app using managed approuter (requires Workzone subscription)
 
 - [Exercise 2 - Azure developer setup](exercises/exercise2/)
     - Provision Azure resources

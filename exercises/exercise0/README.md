@@ -42,4 +42,4 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 
 You've now prepared your development environment and have all information to finally start using Terraform.  
 
-Continue to - [Exercise 1 - Exercise 2 Description](../exercise1/README.md)
+Continue to - [Exercise 1](../exercise1/README.md)
