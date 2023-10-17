@@ -16,7 +16,7 @@ variable "cf_org_id" {
 variable "region" {
   type        = string
   description = "The region where the sub account shall be created in."
-  default     = ""
+  default     = "ap21"
 }
 
 variable "s4_resource_id" {

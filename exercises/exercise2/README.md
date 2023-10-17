@@ -1,4 +1,4 @@
-# Exercise 2 - Add Tracking Information to the Sales Order
+# Exercise 2 - Azure developer setup
 
 ## Goal
 
@@ -74,7 +74,7 @@ After that you should have a rough understanding of the setup and the configurat
 
 First we want to define the name of the Function App to match your user. To do so open the `variables.tf` file and add a default value to the following variable:
 
-```hcl
+```terraform
 variable "azure_function_name" {
   description = "The name of Azure Functions"
   type        = string
@@ -83,7 +83,7 @@ variable "azure_function_name" {
 
 The result should look like this with `XXX` being your user number:
 
-```hcl
+```terraform
 variable "azure_function_name" {
   description = "The name of Azure Functions"
   type        = string
@@ -99,7 +99,7 @@ Save the changes and close the file.
 
 Go back to the file `main.tf`. At the bottom of the file you find some commented out code that is a placeholder for the Function App creation.
 
-```hcl
+```terraform
 # ------------------------------------------------------------------------------------------------------
 # Deploy Function app
 # ------------------------------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ Okay, this seems to be the missing information:
 
 Filling the missing information into the `main.tf` file should result in the following code:
 
-```hcl
+```terraform
 # ------------------------------------------------------------------------------------------------------
 # Deploy Function app
 # ------------------------------------------------------------------------------------------------------
@@ -205,7 +205,7 @@ azd up
 
 Follow the output of the command to check what is happening. Maybe you will even be rewarded with a little ASCII firework after the infrastructure is provisioned.
 
-The last output will be the URL of your Azure Function. Copy it to your clipboard, you will need it later when updating the destination in SAP BTP.
+The last output will be the URL of your Azure Function. *Copy it to your clipboard*, you will need it later when updating the destination in SAP BTP.
 
 ### Task 5 - Check the deployment
 
@@ -213,10 +213,12 @@ Navigate to the Azure portal and check your resource group for the deployed reso
 
 **TODO**: Add screenshot
 
-![Azure Portal - Overview Resource Group](./images/02_01_0010.png)
+![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_0010.png)
 
 ## Summary
 
 You successfully deployed the Azure Function to your Azure subscription. You can now use the Azure Function to retrieve the tracking status of a sales order.
+
+Continue to - [Exercise 3 - Add Destination to Azure Function](../exercise3/README.md)
 
 > **Note** - Asking yourself where the Terraform-relevant information is hiding from you? Take a look at the `.azure` folder that was created in your first call of `azd`.

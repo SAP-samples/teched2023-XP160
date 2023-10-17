@@ -42,10 +42,13 @@ These are the exercises you will go through during the hands-on session XP160:
     - Deploy UI5 app using managed approuter (requires Workzone subscription)
 
 - [Exercise 2 - Azure developer setup](exercises/exercise2/)
-    - Deploy Azure resources
-    - Add additional destination to Azure resource
-    - Deploy UI5 app
-  
+    - Provision Azure resources
+    - Deploy Azure Functions app
+
+- [Exercise 3 - Connect Azure Function and UI5 app](exercises/exercise3/)
+    - Update the Destination 
+
+
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
 
