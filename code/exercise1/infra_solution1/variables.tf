@@ -35,3 +35,9 @@ variable "s4_connection_pw" {
   description = "Password for the destination to the S/4HANA system on Azure"
   sensitive   = true
 }
+
+variable "cf_password" {
+  type        = string
+  description = "Password for Cloud Foundry"
+  sensitive   = true
+}

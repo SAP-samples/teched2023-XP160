@@ -77,3 +77,17 @@ resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
   user_name            = var.username
   depends_on           = [btp_subaccount_subscription.build_workzone]
 }
+
+# ------------------------------------------------------------------------------------------------------
+# 1.4.3 Deploy Cloud Foundry App via cf deploy
+# ------------------------------------------------------------------------------------------------------
+resource "null_resource" "cf_app_deploy" {
+  provisioner "local-exec" {
+    command = "cf login -a https://api.cf.${var.region}.hana.ondemand.com -u ${var.username} -p ${var.cf_password}"
+  }
+
+  provisioner "local-exec" {
+    command = "cf deploy ../salesorder-navigator/mta.tar"
+  }
+
+}
