@@ -41,18 +41,6 @@ module "create_cf_service_instance_privatelink" {
 #      "instance" : {
 #        "existing_destinations_policy" : "update",
 #        "destinations" : [
-#          {
-#            "Authentication"           = "BasicAuthentication",
-#            "Name"                     = "s4-on-azure",
-#            "Description"              = "SAP S/4HANA Connection via Private Link",
-#            "ProxyType"                = "PrivateLink",
-#            "Type"                     = "HTTP",
-#            "URL"                      = "http://93549d77-6851-4178-ba3c-18720c5e5638.p3.pls.sap.internal:50000",
-#            "User"                     = "BPINST"
-#            "Password"                 = "${var.s4_connection_pw}"
-#            "HTML5.DynamicDestination" = "true"
-#            "sap-client"               = "100"
-#          }
 #        ]
 #      }
 #    }
@@ -64,7 +52,7 @@ module "create_cf_service_instance_privatelink" {
 # ------------------------------------------------------------------------------------------------------
 # Create app subscription to SAP Build Workzone, standard edition (depends on entitlement)
 #resource "btp_subaccount_subscription" "build_workzone" {
-#  subaccount_id = var.subaccount_id
+#  subaccount_id = <Subaccount ID of your Subaccount>
 #  app_name      = "SAPLaunchpad"
 #  plan_name     = "standard"
 #}

@@ -189,6 +189,8 @@ When asked, if you really want to execute the plan, you should confirm by typing
 
 Once the script is finished successfully, **you should see the created service key in your subaccount**.
 
+This key i.e. the credentials that it provides are needed for the next exercise to configure the destination towwards the SAP S/4HANA system. 
+
 ## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system
 
 To connect the SAP S/4HANA system that is running on Azure to the SAP BTP subaccount, you must create a destination service and a destination. The destination service is created via a module as for the private link service. The module is located in the directory `code/admin/modules/cloudfoundry/cf-service-instance`. Add the call of the module to the `main.tf` file after the creation of the service key. We use the plan `lite` and the technical name of the service is `destination`. Add the following code to the `main.tf` file:
@@ -207,7 +209,11 @@ module "create_cf_service_instance_destination" {
 }
 ```
 
-This is the basic setup for the destination service, but you also want to add the destination to the S/4HANA system via private link to the service. To achieve this you must add the following parameters to the module call:
+This is the basic setup for the destination service, but you also want to add the destination to the S/4HANA system via private link to the service. The main ingredient is the URL provided by the service key we created in the previous exercise. This key contains the necessary information to construct the URL parameter as part of the credentials (see also [documentation](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key#attributes-reference) of the resource) 
+
+> **Note** - If you want to take a look at the fields contained in the resource you can also check the `terraform.tfstate` file that is in your exercise folder and contains the Terraform state.
+
+To achieve this you must add the following parameters to the module call:
 
 ```terraform
 # ------------------------------------------------------------------------------------------------------
@@ -231,7 +237,7 @@ module "create_cf_service_instance_destination" {
             "Description"              = "SAP S/4HANA Connection via Private Link",
             "ProxyType"                = "PrivateLink",
             "Type"                     = "HTTP",
-            "URL"                      = "http://93549d77-6851-4178-ba3c-18720c5e5638.p3.pls.sap.internal:50000",
+            "URL"                      = "http://${resource.cloudfoundry_service_key.privatelink.credentials.additionalHostname}:50000",
             "User"                     = "BPINST"
             "Password"                 = "${var.s4_connection_pw}"
             "HTML5.DynamicDestination" = "true"
@@ -243,6 +249,8 @@ module "create_cf_service_instance_destination" {
   })
 }  
 ```
+
+
 
 Save the changes and execute the Terraform script again:
 
@@ -336,10 +344,64 @@ We already prepared the application in the repository under `code/exercise1/sale
 
 In general, the provider for Cloud Foundry provides a resource that represents a `cf push` execution. As we are using a mta file, we would need a resource that mimics a `cf deploy` command. As this is specific to the SAP ecosystem, the provider does not provide such a resource. How to proceed?
 
-You will sometimes run into such sceanrios when using Terraform providers 
+You will sometimes run into such scenarios when using Terraform providers maybe as a limitation that will be removed in newer releases or as a permanent issue. Terraform offers a workaround for such scenarios via so called [*Provisioners*](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax). 
 
+We must make explicit calls to the CF CLI, so the [local-exec Provisioner](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec) seems to be a good fit for our sceanrio. 
+
+> **Note** - Using provisioners is **always** a last resort if no other options provided by Terraform can be used to overcome the limitation. The usage comes with some drawbacks that must be considered carefully. 
+
+As we must execute it standalone we also must leverage a pseudo resource, the [*null_resource*](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) provided by hasicorp.
+
+To execute the deployment ad the following code to your `main.tf` file:
+
+```terraform
+resource "null_resource" "cf_app_deploy" {
+  provisioner "local-exec" {
+    command = "cf login -a https://api.cf.${var.region}.hana.ondemand.com -u ${var.username} -p ${var.cf_password}"
+  }
+  provisioner "local-exec" {
+    command = "cf target -o ${var.cf_org_name} -s ${data.cloudfoundry_space.dev.name}"
+  }
+  provisioner "local-exec" {
+    command = "cf deploy ../salesorder-navigator/mta_archives/archive.mtar"
+  }
+  depends_on = [btp_subaccount_subscription.build_workzone, module.create_cf_service_instance_destination, module.create_cf_service_instance_privatelink, cloudfoundry_service_key.privatelink]
+}
+```
+
+The code is quite comprehensive as it represents the steps you would execute in the terminal to trigger the deployment via the CF CLI.
+
+> **Note** - Any tool or CLI that you want to execute via the `local-exec` Provisioner must be installed on your machine. We already did so when setting up the dev container that you use.
+
+The only think that is missing in the setup is the `var.cf_password`. It is defined in the `variables.tf` file but is never filled with a value. To achieve this, create a file called `terraform.tfvars` in the same folder as the `main.tf` file.
+
+Open the file and add the following data in it:
+
+```text
+cf_password = "YOUR WORKSHOPUSER PASSWORD"
+```
+
+Save and close the file. 
+
+> **Note** - due to the naming convention `terraform.tfvars` Terraform will automatically inject the values defined in that file when you trigger a `terraform` command. As the variable `cf_password` is marked as `sensitive` it will not show up in any terminal output of Terraform.
+
+Now we are ready to go to deploy the app. As we have added a new resource, we must firt update the basic setup. Execute the following command: 
+
+```bash
 terraform init -upgrade
-xxxx.
+```
+
+After that execute the Terraform script to deploy the app:
+
+```bash
+terraform apply
+```
+
+When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
+
+After successful execution open the SAP BTP Cockpit, navigate to your subaccount and open the app located in the `HTML5 Applications` section. The app should open and look like this:
+
+![Screenshot of UI5 app - master detail view on sales orders](/exercises/exercise1/images/01_01_05.png)
 
 ## Summary
 
