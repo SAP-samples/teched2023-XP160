@@ -2,19 +2,20 @@
 # 1.1.1 Fetch the details around the available Cloudfoundy space called "dev"
 # ------------------------------------------------------------------------------------------------------
 data "cloudfoundry_space" "dev" {
-    name = "dev"
-    org = var.cf_org_id
+  name = "dev"
+  org  = var.cf_org_id
 }
 
 # ------------------------------------------------------------------------------------------------------
 # 1.1.2 Create service instance for SAP private link
 # ------------------------------------------------------------------------------------------------------
 module "create_cf_service_instance_privatelink" {
-  source       = "../../admin/modules/cloudfoundry/cf-service-instance"
-  cf_space_id  = data.cloudfoundry_space.dev.id
-  service_name = "privatelink"
-  plan_name    = "standard"
-  parameters   = jsonencode({"resourceId" = "${var.s4_resource_id}"})
+  source                = "../../admin/modules/cloudfoundry/cf-service-instance"
+  cf_space_id           = data.cloudfoundry_space.dev.id
+  service_name          = "privatelink"
+  service_instance_name = "salesorder-navigator-privatelink"
+  plan_name             = "standard"
+  parameters            = jsonencode({ "resourceId" = "${var.s4_resource_id}" })
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -29,10 +30,11 @@ module "create_cf_service_instance_privatelink" {
 # 1.3.0 Create destination service + destination to S/4HANA Cloud system
 # ------------------------------------------------------------------------------------------------------
 #module "create_cf_service_instance_destination" {
-#  source       = "../../admin/modules/cloudfoundry/cf-service-instance"
-#  cf_space_id  = data.cloudfoundry_space.dev.id
-#  service_name = "destination"
-#  plan_name    = "lite"
+#  source                = "../../admin/modules/cloudfoundry/cf-service-instance"
+#  cf_space_id           = data.cloudfoundry_space.dev.id
+#  service_name          = "destination"
+#  service_instance_name = "salesorder-navigator-destination"
+#  plan_name             = "lite"
 #  parameters = jsonencode({
 #    "HTML5Runtime_enabled" : "true",
 #    "init_data" : {
@@ -85,9 +87,12 @@ module "create_cf_service_instance_privatelink" {
 #  provisioner "local-exec" {
 #    command = "cf login -a https://api.cf.${var.region}.hana.ondemand.com -u ${var.username} -p ${var.cf_password}"
 #  }
-#
 #  provisioner "local-exec" {
-#    command = "cf deploy ../salesorder-navigator/mta.tar"
+#    command = "cf target -o ${var.cf_org_name} -s ${data.cloudfoundry_space.dev.name}"
 #  }
-#
+#  provisioner "local-exec" {
+#    command = "cf deploy ../salesorder-navigator/mta_archives/archive.mtar"
+#  }
+#  depends_on = [btp_subaccount_subscription.build_workzone, module.create_cf_service_instance_destination, module.create_cf_service_instance_privatelink, cloudfoundry_service_key.privatelink]
 #}
+

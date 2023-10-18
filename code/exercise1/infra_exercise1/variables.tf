@@ -14,6 +14,11 @@ variable "cf_org_id" {
   description = "The Cloudfoundry org id in the subaccount."
 }
 
+variable "cf_org_name" {
+  type        = string
+  description = "The name of the Cloudfoundry organization"
+}
+
 variable "region" {
   type        = string
   description = "The region where the sub account shall be created in."
