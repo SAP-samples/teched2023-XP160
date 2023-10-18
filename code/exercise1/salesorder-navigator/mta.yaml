@@ -7,7 +7,7 @@ modules:
   type: nodejs
   path: gen/srv
   requires:
-  - name: privatelink
+  - name: salesorder-navigator-privatelink
   - name: salesorder-navigator-destination
   - name: uaa_salesorder-navigator
   provides:
@@ -73,11 +73,11 @@ modules:
     - npm run build:cf
     supported-platforms: []
 resources:
-- name: privatelink
+- name: salesorder-navigator-privatelink
   type: org.cloudfoundry.managed-service
   parameters:
     service: privatelink
-    service-name: privatelink
+    service-name: salesorder-navigator-privatelink
     service-plan: standard
 - name: salesorder-navigator-destination
   type: org.cloudfoundry.managed-service
