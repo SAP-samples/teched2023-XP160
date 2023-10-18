@@ -95,14 +95,12 @@ module "create_cf_service_instance_destination" {
             "sap-client"               = "100"
           },
           {
-          {
             "Authentication"           = "NoAuthentication",
             "Name"                     = "tracking-info",
             "Description"              = "Connection to Public Azure Function endpoint",
             "ProxyType"                = "",
             "Type"                     = "Internet",
             "URL"                      = "https://...",
-}  
           }
         ]
       }
@@ -117,7 +115,7 @@ After the successfull application of the change you should see two destinations 
 
 ### Task 2 - Validate the availability of the destination 
 
-Now it is time to validate that everything is working as expected. Open the UI5 app and check if the tracking informaton can be fetched from the Azure Function
+Now it is time to validate that everything is working as expected. Open the UI5 app and check if the tracking informaton can be fetched from the Azure Function.
 
 
 ## Summary
@@ -130,6 +128,6 @@ Now it is time to validate that everything is working as expected. Open the UI5 
 - deployed an Azure Function app to Azure 
 - connected the Azure Fucntion to the UI5 app leveraging the Destination service on SAP BTP
 
-by using Terraform ... in less than 90 minutes. Not too shaby, right.
+by using Terraform in less than 90 minutes. Not too shaby, right?
 
-What remains to say ... onwards and upwards with Terraform!
+What remains to say ... **onwards and upwards with Terraform!**
