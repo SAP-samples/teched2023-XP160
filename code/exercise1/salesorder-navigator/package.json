@@ -41,6 +41,12 @@
                     }
                 }
             },
+            "dhl-shipping-function-on-azure": {
+                "kind": "rest",
+                "credentials": {
+                "destination": "dhl-shipping-function-on-azure"
+                }
+            },
             "[production]": {
                 "auth": "xsuaa"
             }

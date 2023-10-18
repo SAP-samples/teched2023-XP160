@@ -5,4 +5,6 @@ service OrderService {
     entity SalesOrderSet as projection on external.SalesOrderSet {
         key SalesOrderID, Note, CustomerName, GrossAmount, CurrencyCode
     };
+
+    action checkSalesOrderShipping () returns String;
 }
