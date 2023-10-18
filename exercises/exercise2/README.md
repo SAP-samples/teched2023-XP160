@@ -211,7 +211,7 @@ The last output will be the URL of your Azure Function. *Copy it to your clipboa
 
 Navigate to the Azure portal and check your resource group for the deployed resources. You should see the following resources:
 
-![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_0010.png)
+![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_01.png)
 
 ## Summary
 
