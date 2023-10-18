@@ -244,12 +244,101 @@ module "create_cf_service_instance_destination" {
 }  
 ```
 
+Save the changes and execute the Terraform script again:
+
+```bash
+terraform apply
+```
+
+When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
+
+Once the script is finished successfully, **you should see the created service instance in your service instance overview**.
+
+
 ## Exercise 1.4: Setup SAP Build Workzone, standard edition
 
-xxxx.
+As we want to host a UI5 application we need an application that can host this UI. We will use the *SAP Build Workzone, standard edition* to achieve this. This is an application so the resource we need is of the type [btp_subaccount_subscription](https://registry.terraform.io/providers/SAP/btp/latest/docs/resources/subaccount_subscription). As you can see from the documentation, the basic setup looks like this:
 
-## Exercise 1.5: Deploy the UI5 app
+```terraform
+resource "btp_subaccount_subscription" "build_workzone" {
+  subaccount_id = 
+  app_name      = "SAPLaunchpad"
+  plan_name     = "standard"
+}
+```
 
+Add this block into your `main.tf` file after the creation of the service instance for the destination service.
+
+> **Note** - be aware that the app_name must be the technical name of the service which is in this case `SAPLaunchpad`.
+
+Last thing you must add is the value for the subaccount ID that you can fetch from the variables. The final result of the block looks like this:
+
+```terraform
+resource "btp_subaccount_subscription" "build_workzone" {
+  subaccount_id = var.subaccount_id
+  app_name      = "SAPLaunchpad"
+  plan_name     = "standard"
+}
+```
+
+The subscription of the application will create the needed role collections to access the app. However, the roles collections will not be automatically assigned to your user. You must therefore add the admin role `Launchpad_Admin` to your user. The corresponding resource is given by the [btp_subaccount_role_collection_assignment](https://registry.terraform.io/providers/SAP/btp/latest/docs/resources/subaccount_role_collection_assignment). Add the following block to your `main.tf`:
+
+```terraform
+resource "btp_subaccount_role_collection_assignment" "jd" {
+  subaccount_id        = 
+  role_collection_name = "Launchpad_Admin"
+  user_name            = 
+}
+```
+
+The missing parameters can be filled via the available variables. Add them to the code. The result should look like this:
+
+```terraform
+resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
+  subaccount_id        = var.subaccount_id
+  role_collection_name = "Launchpad_Admin"
+  user_name            = var.username
+}
+```
+
+Are we finished yet? How does Terraform know that it must wait with the execution of this resource until the app subscription is finished?
+
+In general, the Terraform framework will try to execute as many actions on the resources as possible. In the planning phase it considers the dependencies that are *implicitly* defined in your `main.tf` file like using the output of one resource as input for the next one. But in the case of the assignment of role collections we have a deppendency to the app subscription, but we do not have any implicit dependency that Terraform could detect. How can we solve that?
+
+Terraform provides a special block for this scenario namely the `depends_on` argument ([documentation](https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on)). With this we can *explicitly* model the dependencies between resources that Terraform must take into account when calculating the execution plan of the resource provisioning. 
+
+In our scenario this means that you must specify the dependency to the app subscription as:
+
+```terraform
+resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
+  subaccount_id        = var.subaccount_id
+  role_collection_name = "Launchpad_Admin"
+  user_name            = var.username
+  depends_on           = [btp_subaccount_subscription.build_workzone]
+}
+```
+
+Now you can add the two new resources to your setup as in the previous step. Save the changes and execute the Terraform script:
+
+```bash
+terraform apply
+```
+
+When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
+
+Once the script is finished successfully, **you should see the created app subscription as well as the role collection assignment to your user**.
+
+With that we have the necessary infrastructure in place and can proceed to deploy the UI5 application.
+
+## Exercise 1.5: Deploy the UI5 application
+
+We already prepared the application in the repository under `code/exercise1/salesorder-navigator`. This folder contains the sources as well as the built MTA file in the subfolder `mta_archives`.
+
+In general, the provider for Cloud Foundry provides a resource that represents a `cf push` execution. As we are using a mta file, we would need a resource that mimics a `cf deploy` command. As this is specific to the SAP ecosystem, the provider does not provide such a resource. How to proceed?
+
+You will sometimes run into such sceanrios when using Terraform providers 
+
+terraform init -upgrade
 xxxx.
 
 ## Summary

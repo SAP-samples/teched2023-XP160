@@ -83,15 +83,16 @@ resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
 # ------------------------------------------------------------------------------------------------------
 # 1.4.3 Deploy Cloud Foundry App via cf deploy
 # ------------------------------------------------------------------------------------------------------
-resource "null_resource" "cf_app_deploy" {
-  provisioner "local-exec" {
-    command = "cf login -a https://api.cf.${var.region}.hana.ondemand.com -u ${var.username} -p ${var.cf_password}"
-  }
-  provisioner "local-exec" {
-    command = "cf target -o ${var.cf_org_name} -s ${data.cloudfoundry_space.dev.name}"
-  }
-  provisioner "local-exec" {
-    command = "cf deploy ../salesorder-navigator/mta_archives/archive.mtar"
-  }
-  depends_on = [btp_subaccount_subscription.build_workzone, module.create_cf_service_instance_destination, module.create_cf_service_instance_privatelink, cloudfoundry_service_key.privatelink]
-}
+#resource "null_resource" "cf_app_deploy" {
+#  provisioner "local-exec" {
+#    command = "cf login -a https://api.cf.${var.region}.hana.ondemand.com -u ${var.username} -p ${var.cf_password}"
+#  }
+#  provisioner "local-exec" {
+#    command = "cf target -o ${var.cf_org_name} -s ${data.cloudfoundry_space.dev.name}"
+#  }
+#  provisioner "local-exec" {
+#    command = "cf deploy ../salesorder-navigator/mta_archives/archive.mtar"
+#  }
+#  depends_on = [btp_subaccount_subscription.build_workzone, module.create_cf_service_instance_destination, module.create_cf_service_instance_privatelink, cloudfoundry_service_key.privatelink]
+#}
+#
