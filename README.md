@@ -9,7 +9,7 @@ This repository contains the material for the [SAP TechEd 2023 session XP160 - U
 ## Overview
 
 This session introduces attendees to Terraform as the de-facto standard for infrastructure as code.
-You will get hands-on experience with deploying and provisioning your apps running on SAP Business Technology Platform (SAP BTP) that integrate with Microsoft Azure services using the SAP Private Link service. 
+You will get hands-on experience with deploying and provisioning your apps running on SAP Business Technology Platform (SAP BTP) that integrate with Microsoft Azure services using the SAP Private Link service.
 
 Leverage the new Terraform provider for SAP BTP to automate the setup of your SAP BTP accounts along with Terraform for Azure.
 
@@ -18,11 +18,9 @@ Leverage the new Terraform provider for SAP BTP to automate the setup of your SA
 The requirements to follow the exercises in this repository are:
 
 - Terraform CLI installed on your computer (already the case for the machines available at TechEd 2023)
-- You need to have a GitHub user. If you don't have one so far, please [sign-up on GitHub](https://github.com/signup) before going through the exercises-
- 
+- You need to have a GitHub user. If you don't have one so far, please [sign-up on GitHub](https://github.com/signup) before going through the exercises
 
 > **Note** - The setup for this exercise (e.g. setting up the individual Subaccounts, setting the entitlements, deploying Cloud Foundry services, ...) were also all done leveraging the Terraform provider for SAP BTP. You can find the scripts [here](code/admin/). These scripts will not be part of the exercises, but feel free to learn from the scripts provided [there](code/admin/).
-
 
 ## Exercises
 
@@ -31,28 +29,29 @@ Prior the exercises you will be given an [introduction to Terraform and the goal
 These are the exercises you will go through during the hands-on session XP160:
 
 - [Exercise 0 - Prepare your development environment](exercises/exercise0/)
-    - Create your GitHub Codespace
-    - Get your BTP user credentials
-    - Get your BTP subaccount ID
+  - Create your GitHub Codespace
+  - Get your BTP user credentials
+  - Get your BTP subaccount ID
 
 - [Exercise 1 - Setup your SAP BTP Subaccount](exercises/exercise1/)
-    - Create privatelink service instance + service key (CF)
-    - Create destination service + destination
-    - Create SAP Build Workzone, standard edition subscription
-    - Deploy UI5 app using managed approuter (requires Workzone subscription)
+  - Create privatelink service instance + service key (CF)
+  - Create destination service + destination
+  - Create SAP Build Workzone, standard edition subscription
+  - Deploy UI5 app using managed approuter (requires Workzone subscription)
 
 - [Exercise 2 - Azure developer setup](exercises/exercise2/)
-    - Provision Azure resources
-    - Deploy Azure Functions app
+  - Provision Azure resources
+  - Deploy Azure Functions app
 
 - [Exercise 3 - Connect Azure Function and UI5 app](exercises/exercise3/)
-    - Update the Destination 
-
+  - Update the Destination
 
 ## Contributing
+
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
 
 ## Code of Conduct
+
 Please read the [SAP Open Source Code of Conduct](https://github.com/SAP-samples/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ## How to obtain support
@@ -60,4 +59,5 @@ Please read the [SAP Open Source Code of Conduct](https://github.com/SAP-samples
 Support for the content in this repository is available during the actual time of the hands-on session for which this content has been designed. Otherwise, you may request support via the [Issues](../../issues) tab.
 
 ## License
-Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
+
+Copyright (c) 2023 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.

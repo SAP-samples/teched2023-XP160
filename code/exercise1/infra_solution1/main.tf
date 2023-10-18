@@ -52,7 +52,15 @@ module "create_cf_service_instance_destination" {
             "Password"                 = "${var.s4_connection_pw}"
             "HTML5.DynamicDestination" = "true"
             "sap-client"               = "100"
-          }
+          },
+//          {
+//            "Authentication" = "NoAuthentication",
+//            "Name"           = "dhl-shipping-function-on-azure",
+//            "Description"    = "Connection to Public Azure Function endpoint",
+//            "ProxyType"      = "",
+//            "Type"           = "Internet",
+//            "URL"            = "https://..."
+//          }
         ]
       }
     }

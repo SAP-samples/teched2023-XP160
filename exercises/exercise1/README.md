@@ -4,7 +4,7 @@ In this exercise, we will connect an UI5 app running on SAP BTP to an SAP S/4HAN
 
 ## Exercise 1.0: Adapt file `variables.tf`
 
-Switch to the tab with your GitHub codespace and enter the following commands into the terminal:
+Switch to the tab with your GitHub Codespace and enter the following commands into the terminal:
 
 ```bash
 clear
@@ -19,9 +19,9 @@ Before you can start, you must provide some variables. Please open the `variable
 
 ### Add `subaccount_id`
 
-Look for the section with the varable `subaccount_id` and add a *default value*. That value is the subaccount ID from your BTP subaccount you saw in exercise 0.
+Look for the section with the variable `subaccount_id` and add a *default value*. That value is the subaccount ID from your BTP subaccount you saw in exercise 0.
 
-You find the subaccount ID in the SAP BTP Cockpit in the overview of your Subaccount
+You find the subaccount ID in the SAP BTP Cockpit in the overview of your subaccount
 
 ![Screenshot of SAP BTP subaccount overview](/exercises/exercise0/images/00_02_01.png)
 
@@ -89,9 +89,7 @@ variable "globalaccount" {
 }
 ```
 
-**You are now ready for the first steps in Terraform**
-
-Switch to the terminal and type-in the following commands followed by hitting the `return` key:
+You are now ready for the first steps in Terraform. Switch to the terminal and type-in the following commands followed by hitting the `return` key:
 
 ```bash
 terraform init
@@ -115,7 +113,7 @@ You should see a list of the planned steps for the Terraform script.
 
 > **Note** - If you get an error message here, this means, that you might not have completed the steps before correctly.
 
-In the next step we will see how Terraform will apply the `plan` to your infrastrucure. Type-in the following commands and hit the `return` key:
+In the next step we will see how Terraform will apply the `plan` to your infrastructure. Type-in the following commands and hit the `return` key:
 
 ```bash
 terraform apply
@@ -123,13 +121,13 @@ terraform apply
 
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
-Once the script is finished successfully, **you should see the created private link instance in your subaccount**.
+Once the script is finished successfully, you should see the created private link instance in your subaccount.
 
 ![Screenshot of SAP Cockpit instance overview with the private Link service](/exercises/exercise1/images/01_01_04.png)
 
 ## Exercise 1.2: Create service key for private link
 
-As a next step in the setup, you must create a service key for the private link service. Xou cretaed the service in the Cloud Foundry environment, so you must now also create the service key using the Terraform Provider for Cloud Foundry i.e. the resource [cloudfoundry_service_key](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key). Include the creation of the resource in the `main.tf` file after the creation of the service instance of the private link service:
+As a next step in the setup, you must create a service key for the private link service. Xou created the service in the Cloud Foundry environment, so you must now also create the service key using the Terraform Provider for Cloud Foundry i.e. the resource [cloudfoundry_service_key](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key). Include the creation of the resource in the `main.tf` file after the creation of the service instance of the private link service:
 
 ```terraform
 # ------------------------------------------------------------------------------------------------------
@@ -154,7 +152,7 @@ module "create_cf_service_instance_privatelink" {
 }
 ```
 
-So let us check the output that the module provides in the file `cf_service_instance_outputs.tf` in the directory `code/admin/modules/cloudfoundry/cf-service-instance` that is specified as `source` of the module. It has the content: 
+So let us check the output that the module provides in the file `cf_service_instance_outputs.tf` in the directory `code/admin/modules/cloudfoundry/cf-service-instance` that is specified as `source` of the module. It has the content:
 
 ```terraform
 output "id" {
@@ -187,9 +185,9 @@ terraform apply
 
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
-Once the script is finished successfully, **you should see the created service key in your subaccount**.
+Once the script is finished successfully, you should see the created service key in your subaccount.
 
-This key i.e. the credentials that it provides are needed for the next exercise to configure the destination towwards the SAP S/4HANA system. 
+This key i.e. the credentials that it provides are needed for the next exercise to configure the destination towards the SAP S/4HANA system.
 
 ## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system
 
@@ -209,7 +207,7 @@ module "create_cf_service_instance_destination" {
 }
 ```
 
-This is the basic setup for the destination service, but you also want to add the destination to the S/4HANA system via private link to the service. The main ingredient is the URL provided by the service key we created in the previous exercise. This key contains the necessary information to construct the URL parameter as part of the credentials (see also [documentation](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key#attributes-reference) of the resource) 
+This is the basic setup for the destination service, but you also want to add the destination to the S/4HANA system via private link to the service. The main ingredient is the URL provided by the service key we created in the previous exercise. This key contains the necessary information to construct the URL parameter as part of the credentials (see also [documentation](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key#attributes-reference) of the resource)
 
 > **Note** - If you want to take a look at the fields contained in the resource you can also check the `terraform.tfstate` file that is in your exercise folder and contains the Terraform state.
 
@@ -250,8 +248,6 @@ module "create_cf_service_instance_destination" {
 }  
 ```
 
-
-
 Save the changes and execute the Terraform script again:
 
 ```bash
@@ -260,8 +256,7 @@ terraform apply
 
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
-Once the script is finished successfully, **you should see the created service instance in your service instance overview**.
-
+Once the script is finished successfully, you should see the created service instance in your service instance overview.
 
 ## Exercise 1.4: Setup SAP Build Workzone, standard edition
 
@@ -311,9 +306,9 @@ resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
 
 Are we finished yet? How does Terraform know that it must wait with the execution of this resource until the app subscription is finished?
 
-In general, the Terraform framework will try to execute as many actions on the resources as possible. In the planning phase it considers the dependencies that are *implicitly* defined in your `main.tf` file like using the output of one resource as input for the next one. But in the case of the assignment of role collections we have a deppendency to the app subscription, but we do not have any implicit dependency that Terraform could detect. How can we solve that?
+In general, the Terraform framework will try to execute as many actions on the resources as possible. In the planning phase it considers the dependencies that are *implicitly* defined in your `main.tf` file like using the output of one resource as input for the next one. But in the case of the assignment of role collections we have a dependency to the app subscription, but we do not have any implicit dependency that Terraform could detect. How can we solve that?
 
-Terraform provides a special block for this scenario namely the `depends_on` argument ([documentation](https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on)). With this we can *explicitly* model the dependencies between resources that Terraform must take into account when calculating the execution plan of the resource provisioning. 
+Terraform provides a special block for this scenario namely the `depends_on` argument ([documentation](https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on)). With this we can *explicitly* model the dependencies between resources that Terraform must take into account when calculating the execution plan of the resource provisioning.
 
 In our scenario this means that you must specify the dependency to the app subscription as:
 
@@ -334,7 +329,7 @@ terraform apply
 
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
-Once the script is finished successfully, **you should see the created app subscription as well as the role collection assignment to your user**.
+Once the script is finished successfully, you should see the created app subscription as well as the role collection assignment to your user.
 
 With that we have the necessary infrastructure in place and can proceed to deploy the UI5 application.
 
@@ -344,13 +339,13 @@ We already prepared the application in the repository under `code/exercise1/sale
 
 In general, the provider for Cloud Foundry provides a resource that represents a `cf push` execution. As we are using a mta file, we would need a resource that mimics a `cf deploy` command. As this is specific to the SAP ecosystem, the provider does not provide such a resource. How to proceed?
 
-You will sometimes run into such scenarios when using Terraform providers maybe as a limitation that will be removed in newer releases or as a permanent issue. Terraform offers a workaround for such scenarios via so called [*Provisioners*](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax). 
+You will sometimes run into such scenarios when using Terraform providers maybe as a limitation that will be removed in newer releases or as a permanent issue. Terraform offers a workaround for such scenarios via so called [*Provisioners*](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax).
 
-We must make explicit calls to the CF CLI, so the [local-exec Provisioner](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec) seems to be a good fit for our sceanrio. 
+We must make explicit calls to the CF CLI, so the [local-exec Provisioner](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec) seems to be a good fit for our scenario.
 
-> **Note** - Using provisioners is **always** a last resort if no other options provided by Terraform can be used to overcome the limitation. The usage comes with some drawbacks that must be considered carefully. 
+> **Note** - Using provisioners is **always** a last resort if no other options provided by Terraform can be used to overcome the limitation. The usage comes with some drawbacks that must be considered carefully.
 
-As we must execute it standalone we also must leverage a pseudo resource, the [*null_resource*](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) provided by hasicorp.
+As we must execute it standalone we also must leverage a pseudo resource, the [*null_resource*](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) provided by Hashicorp.
 
 To execute the deployment ad the following code to your `main.tf` file:
 
@@ -381,11 +376,11 @@ Open the file and add the following data in it:
 cf_password = "YOUR WORKSHOPUSER PASSWORD"
 ```
 
-Save and close the file. 
+Save and close the file.
 
 > **Note** - due to the naming convention `terraform.tfvars` Terraform will automatically inject the values defined in that file when you trigger a `terraform` command. As the variable `cf_password` is marked as `sensitive` it will not show up in any terminal output of Terraform.
 
-Now we are ready to go to deploy the app. As we have added a new resource, we must firt update the basic setup. Execute the following command: 
+Now we are ready to go to deploy the app. As we have added a new resource, we must first update the basic setup. Execute the following command:
 
 ```bash
 terraform init -upgrade

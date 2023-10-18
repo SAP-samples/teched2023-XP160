@@ -219,4 +219,4 @@ You successfully deployed the Azure Function to your Azure subscription. You can
 
 Continue to - [Exercise 3 - Add Destination to Azure Function](../exercise3/README.md)
 
-> **Note** - Asking yourself where the Terraform-relevant information is hiding from you? Take a look at the `.azure` folder that was created in your first call of `azd`.
+> **Note** - Asking yourself where the Terraform-specific information is hiding from you? Take a look at the `.azure` folder that was created in your first call of `azd`.
