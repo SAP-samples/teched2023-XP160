@@ -49,7 +49,6 @@ These are the exercises you will go through during the hands-on session XP160:
 - [Exercise 4 - Cleanup](exercises/exercise4/)
   - Destroy the resources created in the previous exercises
 
-
 ## Contributing
 
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
