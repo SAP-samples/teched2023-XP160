@@ -34,21 +34,24 @@ You will focus on adding the necessary parts to your infrastructure setup in the
 ### Basic `azd` setup
 
 Before starting with the exercise you will need to authenticate against your Azure subscription.
+
+>**Note** - For simplicity in this hands-on exercise we will be using Azure service principals. Usually the process runs through an interactive login with your personal user to comply with conditional access policies.
+
 To do so open a terminal and key in:
 
 ```bash
-azd auth login
+azd login auth --client-id 9f68e1ab-1734-40b3-a2ac-2d3bb092e122 --client-secret <password> --tenant-id 0883e185-1d08-45d3-a798-26a32dd9e885
 ```
 
-This will trigger a login flow via your browser. After successful login you will be able to use the `azd` CLI.
+This will trigger a login flow via your console. After successful login you will be able to use the `azd` CLI.
 
 As we are also making use of the `az` CLI (the one without the "d" 😉) behind the scenes, you will need to authenticate against your Azure subscription as well. To do so open a terminal and key in:
 
 ```bash
-az login --use-device-code
+az login --service-principal -u 9f68e1ab-1734-40b3-a2ac-2d3bb092e122 -p <password> --tenant 0883e185-1d08-45d3-a798-26a32dd9e885
 ```
 
-This will trigger a login flow via your browser. After successful login you are all set to start with the exercise.
+This will trigger a login flow via your console. After successful login you are all set to start with the exercise.
 
 ## Exercise
 
@@ -160,6 +163,7 @@ Great! It seems that our setup of the resources is complete now. But how can we 
 It is time to check what will be deployed to your Azure subscription. To do so, you can use the `azd provision --preview` command. This command will show you the planned infrastructure deployment.
 
 ```bash
+cd code/exercise2/
 azd provision --preview
 ```
 
@@ -186,6 +190,8 @@ When calling it the first time you will be asked to enter some information that 
    Select the subscription you want to use.
 
 - A location for your Azure resources:
+
+  Chose 16. (Asia Pacific) - Southeast Asia
 
    ```bash
    ? Select an Azure location to use:  [Use arrows to move, type to filter]

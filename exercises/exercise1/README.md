@@ -101,7 +101,7 @@ You will get an output similar to this:
 
 This step fetches all Terraform providers that the Terraform CLI has detected in the Terraform scripts.
 
-## Exercise 1.1: Create service instance for SAP private link
+## Exercise 1.1: Create service instance for SAP Private Link for Azure
 
 In a next step we will see how Terraform is `plan`ing the scripts. Type-in the following commands and hit the `return` key:
 
@@ -123,11 +123,13 @@ When asked, if you really want to execute the plan, you should confirm by typing
 
 Once the script is finished successfully, you should see the created private link instance in your subaccount.
 
+> **Note** - be aware we configured Private Link auto-approval on the Azure subscription used in this hands-on session for requests coming from this SAP BTP global account. In your own scenarios you might want to approve manually or use other workflows.
+
 ![Screenshot of SAP Cockpit instance overview with the private Link service](/exercises/exercise1/images/01_01_04.png)
 
 ## Exercise 1.2: Create service key for private link
 
-As a next step in the setup, you must create a service key for the private link service. Xou created the service in the Cloud Foundry environment, so you must now also create the service key using the Terraform Provider for Cloud Foundry i.e. the resource [cloudfoundry_service_key](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key). Include the creation of the resource in the `main.tf` file after the creation of the service instance of the private link service:
+As a next step in the setup, you must create a service key for the private link service. You created the service in the Cloud Foundry environment, so you must now also create the service key using the Terraform Provider for Cloud Foundry i.e. the resource [cloudfoundry_service_key](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key). Include the creation of the resource in the `main.tf` file after the creation of the service instance of the private link service:
 
 ```terraform
 # ------------------------------------------------------------------------------------------------------
@@ -189,7 +191,7 @@ Once the script is finished successfully, you should see the created service key
 
 This key i.e. the credentials that it provides are needed for the next exercise to configure the destination towards the SAP S/4HANA system.
 
-## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system
+## Exercise 1.3: Create destination service + destination to S/4HANA Cloud system on Azure
 
 To connect the SAP S/4HANA system that is running on Azure to the SAP BTP subaccount, you must create a destination service and a destination. The destination service is created via a module as for the private link service. The module is located in the directory `code/admin/modules/cloudfoundry/cf-service-instance`. Add the call of the module to the `main.tf` file after the creation of the service key. We use the plan `lite` and the technical name of the service is `destination`. Add the following code to the `main.tf` file:
 
