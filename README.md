@@ -46,6 +46,10 @@ These are the exercises you will go through during the hands-on session XP160:
 - [Exercise 3 - Connect Azure Function and UI5 app](exercises/exercise3/)
   - Update the Destination
 
+- [Exercise 4 - Cleanup](exercises/exercise4/)
+  - Destroy the resources created in the previous exercises
+
+
 ## Contributing
 
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.

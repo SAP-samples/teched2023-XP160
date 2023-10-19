@@ -130,3 +130,5 @@ Now it is time to validate that everything is working as expected. Open the UI5 
 by using Terraform in less than 90 minutes. Not too shabby, right?
 
 What remains to say ... **onwards and upwards with Terraform!**
+
+Well maybe one more thing: Would you like to destroy all the stuff you just created with **one** command? Then go to [exercise 4](../exercise4/README.md) and follow the instructions there.
