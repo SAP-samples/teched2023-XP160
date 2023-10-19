@@ -195,6 +195,12 @@ When calling it the first time you will be asked to enter some information that 
 
 After that the already known `terraform plan` is executed. Check the output and make sure that the planned deployment lists the resources you would expect.
 
+The `azd` flow you will start in the next step will trigger some shell scripts. Although we made them executable for you, you might need to allow the execution of the scripts in your terminal. For that execute the following command in your terminal:
+
+```bash
+chmod a+x /workspaces/teched2023-XP160/code/exercise2/hooks/*.sh
+```
+
 ### Task 4 - Just deploy it
 
 Ready, set, go - time to deploy the infrastructure and your Azure Function app via **one** command (to rule them all):
@@ -213,9 +219,27 @@ Navigate to the Azure portal and check your resource group for the deployed reso
 
 ![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_01.png)
 
+### Task 6 - Trigger the Azure Function
+
+Time to check if the Azure Function is *really* working. For that we have a little helper script for you that uses the [REST client extension in VSCode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). It is located in the `code/exercise2/src/test` folder and is called `request.http`.
+
+Open the file and replace the URL with the URL of your Azure Function. You can find it in the output of the `azd up` command. It should look like this:
+
+```http
+ @FUNCTION_APP_URL=https://azfunc-tracking-xyzabc.azurewebsites.net/api/fetchTrackingStatus?code=WZbPCCN5PvKQgnM32LM68MBgiHxX8Ja0P6HQiCbcQAL4AzFuppb_AA==
+```
+
+Then execute the call by clicking on the `Send Request` link above the URL. The result should look like this for a call *without* specifying the tracking ID:
+
+![Screenshot of Azure Function Call with REST client - Without tracking ID](./images/02_01_02.png)
+
+The result should look like this for a call *without* specifying the tracking ID:
+
+![Screenshot of Azure Function Call with REST client - With tracking ID](./images/02_01_03.png)
+
 ## Summary
 
-You successfully deployed the Azure Function to your Azure subscription. You can now use the Azure Function to retrieve the tracking status of a sales order.
+You successfully deployed the Azure Function to your Azure subscription and tested it. You can now use the Azure Function to retrieve the tracking status of a sales order.
 
 Continue to - [Exercise 3 - Add Destination to Azure Function](../exercise3/README.md)
 

@@ -1,5 +1,0 @@
-### Try without tracking ID
-http://localhost:7071/api/fetchTrackingStatus
-
-### Try with tracking ID
-http://localhost:7071/api/fetchTrackingStatus?trackingId=1234567890
