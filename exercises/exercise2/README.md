@@ -232,7 +232,7 @@ Time to check if the Azure Function is *really* working. For that we have a litt
 Open the file and replace the URL with the URL of your Azure Function. You can find it in the output of the `azd up` command. It should look like this:
 
 ```http
- @FUNCTION_APP_URL=https://azfunc-tracking-xyzabc.azurewebsites.net/api/fetchTrackingStatus?code=WZbPCCN5PvKQgnM32LM68MBgiHxX8Ja0P6HQiCbcQAL4AzFuppb_AA==
+ @FUNCTION_APP_URL=https://azfunc-tracking-xyzabc.azurewebsites.net/api/fetchTrackingStatus
 ```
 
 Then execute the call by clicking on the `Send Request` link above the URL. The result should look like this for a call *without* specifying the tracking ID:
