@@ -14,12 +14,11 @@ module.exports = cds.service.impl(async function() {
 
     this.on('checkSalesOrderShipping', async (req) => {
         var response = {};
-        var tmp = req.params;
         try {
             //const { tenant } = req;
             const shippingState = await cds.connect.to("dhl-shipping-function-on-azure") ;
-            response = await shippingState.tx(req).post("/", {"key":"value"});
-            console.log(`DHL STATE: ${JSON.stringify(response.data)}`)
+            response = await shippingState.tx(req).get("/api/fetchTrackingStatus?trackingId=" + req.params[0].SalesOrderID);
+            console.log(`DHL STATE: ${JSON.stringify(response)}`)
         } catch (error) {
             console.error(`Error: ${error?.message}`);
         }

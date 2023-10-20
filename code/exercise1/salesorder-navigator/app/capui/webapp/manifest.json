@@ -84,7 +84,6 @@
             "css": []
         },
         "routing": {
-            "config": {},
             "routes": [
                 {
                     "pattern": ":?query:",
@@ -112,6 +111,18 @@
                                         "route": "SalesOrderSetObjectPage"
                                     }
                                 }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "actions": {
+                                        "DataFieldForAction::OrderService::checkSalesOrderShipping": {
+                                            "enableOnSelect": "single",
+                                            "afterExecution": {
+                                                "navigateToInstance": false
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -127,6 +138,11 @@
                         }
                     }
                 }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
             }
         }
     },

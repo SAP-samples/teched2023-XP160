@@ -4,7 +4,8 @@ service OrderService {
     @cds.persistence.skip
     entity SalesOrderSet as projection on external.SalesOrderSet {
         key SalesOrderID, Note, CustomerName, GrossAmount, CurrencyCode
-    };
-
-    action checkSalesOrderShipping () returns String;
+    } actions {
+        action checkSalesOrderShipping () returns String;
+    }; 
+    
 }

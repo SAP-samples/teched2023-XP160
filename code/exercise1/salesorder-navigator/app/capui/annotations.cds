@@ -30,7 +30,7 @@ annotate service.SalesOrderSet with @(
         {
             $Type : 'UI.DataFieldForAction',
             Label : 'Check Shipping via Azure',
-            Action: 'OrderService.EntityContainer/checkSalesOrderShipping',
+            Action: 'OrderService.checkSalesOrderShipping',
             Inline: true
         }
     ]
