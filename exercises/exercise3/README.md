@@ -61,9 +61,9 @@ You must add a second entry into the array of destination objects with the data 
 }
 ```
 
-You must replace the placeholder of the `URL` with the value you received after your deployment of the Azure Function.
+You must replace the placeholder of the `URL` with the value for the **host** you received after your deployment of the Azure Function.
 
-> **Note** - If you missed to note the URL down, you can also find it in the Azure Portal namely in your Azure Function app.
+> **Note** - If you missed to note the URL down, you can also find it in the Azure Portal namely in your Azure Function app. Be aware to copy the host only and not the complete URL. The host is the part before `/api/...`.
 
 The final result should then look like this:
 
@@ -100,7 +100,7 @@ module "create_cf_service_instance_destination" {
             "Description"              = "Connection to Public Azure Function endpoint",
             "ProxyType"                = "",
             "Type"                     = "Internet",
-            "URL"                      = "https://..."
+            "URL"                      = "https://azfunc-tracking-abc123.azurewebsites.net/"
           }
         ]
       }
