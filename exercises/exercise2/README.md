@@ -19,46 +19,49 @@ Both steps will be handled in a self-contained way by using the *Azure Developer
 
 ### What is provided for you?
 
-As in exercise one you do not start from scratch. All CLI tools are already installed and the source code of the Azure Function is available. You find all necessary files in the `code/azfunc` folder.
+As in exercise one you do not start from scratch. All CLI tools are already installed and the source code of the Azure Function is available. You find all necessary files in the `code/exercise2` folder.
 
 The file structure looks like this:
 
 - `code/exercise2/`: Root folder that comprises the complete `azd` project
   - `azure.yaml`: The `azd` manifest file
   - `src`: The folder that contains the source code of the Azure Function
-  - `infra_exercise`: The folder that contains the infrastructure setup for the exercise
-  - `infra_solution`: The folder that contains a sample solution for the infrastructure setup
+  - `infra_exercise2`: The folder that contains the infrastructure setup for the exercise
+  - `infra_solution2`: The folder that contains a sample solution for the infrastructure setup
 
-You will focus on adding the necessary parts to your infrastructure setup in the files located in `infra_exercise`.
+You will focus on adding the necessary parts to your infrastructure setup in the files located in `infra_exercise2`.
 
 ### Basic `azd` setup
 
 Before starting with the exercise you will need to authenticate against your Azure subscription.
+
+>**Note** - For simplicity in this hands-on exercise we will be using Azure service principals. Usually the process runs through an interactive login with your personal user to comply with conditional access policies.
+
 To do so open a terminal and key in:
 
 ```bash
-azd auth login
+azd login auth --client-id 9f68e1ab-1734-40b3-a2ac-2d3bb092e122 --client-secret <password> --tenant-id 0883e185-1d08-45d3-a798-26a32dd9e885
 ```
 
-This will trigger a login flow via your browser. After successful login you will be able to use the `azd` CLI.
+This will trigger a login flow via your console. After successful login you will be able to use the `azd` CLI.
 
 As we are also making use of the `az` CLI (the one without the "d" 😉) behind the scenes, you will need to authenticate against your Azure subscription as well. To do so open a terminal and key in:
 
 ```bash
-az login
+az login --service-principal -u 9f68e1ab-1734-40b3-a2ac-2d3bb092e122 -p <password> --tenant 0883e185-1d08-45d3-a798-26a32dd9e885
 ```
 
-This will trigger a login flow via your browser. After successful login you are all set to start with the exercise.
+This will trigger a login flow via your console. After successful login you are all set to start with the exercise.
 
 ## Exercise
 
 Now it is your turn. You will need to complete the tasks described in the following sections to successfully deploy your Azure Function.
 
-> **Note** - In case you are running into issues you can always check the sample solution in the `infra_solution` folder.
+> **Note** - In case you are running into issues you can always check the sample solution in the `infra_solution2` folder.
 
 ### Task 0 - Familiarize yourself with the configuration
 
-Before starting with the exercise you should take a look at the configuration files that are provided for you. You will find them in the `infra_exercise` folder.
+Before starting with the exercise you should take a look at the configuration files that are provided for you. You will find them in the `infra_exercise2` folder.
 
 As a rough guideline you can follow the following steps:
 
@@ -116,7 +119,7 @@ Remove the comments and save the file.
 
 Hmmm, this does not look like a complete setup. It seems that we are missing some information. But where can we get it from?
 
-We are using a module here, so first check the module folder for the Azure Functions App which is located under `code/azfunc/infra_exercise/modules/function`. Let us first check the variables that need to be set. They are defined in the file `function_variables.tf`.
+We are using a module here, so first check the module folder for the Azure Functions App which is located under `code/exercise2/infra_exercise2/modules/function`. Let us first check the variables that need to be set. They are defined in the file `function_variables.tf`.
 
 Looks like the following parameters are missing in the `main.tf` file:
 
@@ -160,6 +163,7 @@ Great! It seems that our setup of the resources is complete now. But how can we 
 It is time to check what will be deployed to your Azure subscription. To do so, you can use the `azd provision --preview` command. This command will show you the planned infrastructure deployment.
 
 ```bash
+cd code/exercise2/
 azd provision --preview
 ```
 
@@ -187,6 +191,8 @@ When calling it the first time you will be asked to enter some information that 
 
 - A location for your Azure resources:
 
+  Chose 16. (Asia Pacific) - Southeast Asia
+
    ```bash
    ? Select an Azure location to use:  [Use arrows to move, type to filter]
    ```
@@ -195,9 +201,15 @@ When calling it the first time you will be asked to enter some information that 
 
 After that the already known `terraform plan` is executed. Check the output and make sure that the planned deployment lists the resources you would expect.
 
+The `azd` flow you will start in the next step will trigger some shell scripts. Although we made them executable for you, you might need to allow the execution of the scripts in your terminal. For that execute the following command in your terminal:
+
+```bash
+chmod a+x /workspaces/teched2023-XP160/code/exercise2/hooks/*.sh
+```
+
 ### Task 4 - Just deploy it
 
-Ready, set, go - time to deploy your Azure Function via one command (to rule them all):
+Ready, set, go - time to deploy the infrastructure and your Azure Function app via **one** command (to rule them all):
 
 ```bash
 azd up
@@ -211,14 +223,30 @@ The last output will be the URL of your Azure Function. *Copy it to your clipboa
 
 Navigate to the Azure portal and check your resource group for the deployed resources. You should see the following resources:
 
-**TODO**: Add screenshot
+![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_01.png)
 
-![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_0010.png)
+### Task 6 - Trigger the Azure Function
+
+Time to check if the Azure Function is *really* working. For that we have a little helper script for you that uses the [REST client extension in VSCode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). It is located in the `code/exercise2/src/test` folder and is called `request.http`.
+
+Open the file and replace the URL with the URL of your Azure Function. You can find it in the output of the `azd up` command. It should look like this:
+
+```http
+ @FUNCTION_APP_URL=https://azfunc-tracking-xyzabc.azurewebsites.net/api/fetchTrackingStatus
+```
+
+Then execute the call by clicking on the `Send Request` link above the URL. The result should look like this for a call *without* specifying the tracking ID:
+
+![Screenshot of Azure Function Call with REST client - Without tracking ID](./images/02_01_02.png)
+
+The result should look like this for a call *without* specifying the tracking ID:
+
+![Screenshot of Azure Function Call with REST client - With tracking ID](./images/02_01_03.png)
 
 ## Summary
 
-You successfully deployed the Azure Function to your Azure subscription. You can now use the Azure Function to retrieve the tracking status of a sales order.
+You successfully deployed the Azure Function to your Azure subscription and tested it. You can now use the Azure Function to retrieve the tracking status of a sales order.
 
 Continue to - [Exercise 3 - Add Destination to Azure Function](../exercise3/README.md)
 
-> **Note** - Asking yourself where the Terraform-relevant information is hiding from you? Take a look at the `.azure` folder that was created in your first call of `azd`.
+> **Note** - Asking yourself where the Terraform-specific information is hiding from you? Take a look at the `.azure` folder that was created in your first call of `azd`.

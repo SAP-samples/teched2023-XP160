@@ -47,12 +47,20 @@ module "create_cf_service_instance_destination" {
             "Description"              = "SAP S/4HANA Connection via Private Link",
             "ProxyType"                = "PrivateLink",
             "Type"                     = "HTTP",
-            "URL"                      = "http://93549d77-6851-4178-ba3c-18720c5e5638.p3.pls.sap.internal:50000",
+            "URL"                      = "http://${resource.cloudfoundry_service_key.privatelink.credentials.additionalHostname}:50000",
             "User"                     = "BPINST"
             "Password"                 = "${var.s4_connection_pw}"
             "HTML5.DynamicDestination" = "true"
             "sap-client"               = "100"
-          }
+          },
+//          {
+//            "Authentication" = "NoAuthentication",
+//            "Name"           = "dhl-shipping-function-on-azure",
+//            "Description"    = "Connection to Public Azure Function endpoint",
+//            "ProxyType"      = "",
+//            "Type"           = "Internet",
+//            "URL"            = "https://..."
+//          }
         ]
       }
     }

@@ -1,11 +1,11 @@
 {
 	"name": "Devcontainer TechEd 2023 - XP160",
 	"build": {
-        "dockerfile": "Dockerfile",
+		"dockerfile": "Dockerfile",
 		"args": {
-            "VARIANT": "bullseye"
-        }
-    },
+			"VARIANT": "bullseye"
+		}
+	},
 	//"image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
@@ -25,13 +25,14 @@
 				"GitHub.vscode-github-actions",
 				"ms-azuretools.azure-dev",
 				"ms-azuretools.vscode-azurefunctions",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"humao.rest-client"
 			]
 		}
 	},
 	"remoteUser": "node",
 	//Ensure that workspace is configured as safe directory and enable alpha feature for Terraform usage
-	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160 && cf install-plugin multiapps -f",
+	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160 && chmod a+x /workspaces/teched2023-XP160/code/exercise2/hooks/*.sh && cf install-plugin multiapps -f",
 	"forwardPorts": [
 		7071
 	],

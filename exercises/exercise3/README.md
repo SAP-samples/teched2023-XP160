@@ -1,8 +1,8 @@
 # Exercise 3 - Connect Azure Function and UI5 app
 
-# Goal
+## Goal
 
-In this exercise, you will connect the Azure Function endpoint from [exercise 2](../exercise2/README.md) to the UI5 app to fetch the tracking information for your sales orders. 
+In this exercise, you will connect the Azure Function endpoint from [exercise 2](../exercise2/README.md) to the UI5 app to fetch the tracking information for your sales orders.
 
 > **Note** - The UI5 app you deployed in [exercise 1](../exercise1/README.md) already contains the necessary code to fetch the information. The only missing piece is the configuration of the destination.
 
@@ -10,9 +10,9 @@ In this exercise, you will connect the Azure Function endpoint from [exercise 2]
 
 ### Task 1 - Update the destination
 
-As you already created the destination including its configuration in [exercise 1](../exercise1/README.md) you must add the missing destination configuration for the Azure Function endpoint. Terraform will then apply this change and update the infrastructucture accordingly.
+As you already created the destination including its configuration in [exercise 1](../exercise1/README.md) you must add the missing destination configuration for the Azure Function endpoint. Terraform will then apply this change and update the infrastructure accordingly.
 
-To achive this open the `main.tf` file in the folder [infra_exercise1](../../code/exercise1/infra_exercise1) and navigate to the section where you defined the destination to the S/4HANA system:
+To achieve this open the `main.tf` file in the folder [infra_exercise1](../../code/exercise1/infra_exercise1) and navigate to the section where you defined the destination to the S/4HANA system:
 
 ```terraform
 # ------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ You must add a second entry into the array of destination objects with the data 
 ```bash
 {
    "Authentication"           = "NoAuthentication",
-   "Name"                     = "tracking-info",
+   "Name"                     = "dhl-shipping-function-on-azure",
    "Description"              = "Connection to Public Azure Function endpoint",
    "ProxyType"                = "",
    "Type"                     = "Internet",
@@ -61,9 +61,9 @@ You must add a second entry into the array of destination objects with the data 
 }
 ```
 
-You must replace the placeholder of the `URL` with the value you received after your deplyoment of the Azure Function.
+You must replace the placeholder of the `URL` with the value for the **host** you received after your deployment of the Azure Function.
 
-> **Note** - If you missed to note the URL down, you can also find it in the Azure Portal namely in your Azure Function app.
+> **Note** - If you missed to note the URL down, you can also find it in the Azure Portal namely in your Azure Function app. Be aware to copy the host only and not the complete URL. The host is the part before `/api/...`.
 
 The final result should then look like this:
 
@@ -95,14 +95,12 @@ module "create_cf_service_instance_destination" {
             "sap-client"               = "100"
           },
           {
-          {
             "Authentication"           = "NoAuthentication",
-            "Name"                     = "tracking-info",
+            "Name"                     = "dhl-shipping-function-on-azure",
             "Description"              = "Connection to Public Azure Function endpoint",
             "ProxyType"                = "",
             "Type"                     = "Internet",
-            "URL"                      = "https://...",
-}  
+            "URL"                      = "https://azfunc-tracking-abc123.azurewebsites.net/"
           }
         ]
       }
@@ -111,25 +109,26 @@ module "create_cf_service_instance_destination" {
 }
 ```
 
-Save the changes and execute a `terraform apply`. The resulting plan should contain the change of the destination resource. If this is the case acknowledege the apply by keying in `yes`.
+Save the changes and execute a `terraform apply`. The resulting plan should contain the change of the destination resource. If this is the case acknowledge the apply by keying in `yes`.
 
-After the successfull application of the change you should see two destinations in the destination service.
+After the successful execution of the update you should see two destinations in the destination service.
 
-### Task 2 - Validate the availability of the destination 
+### Task 2 - Validate the availability of the destination
 
-Now it is time to validate that everything is working as expected. Open the UI5 app and check if the tracking informaton can be fetched from the Azure Function
-
+Now it is time to validate that everything is working as expected. Open the UI5 app and check if the tracking information can be fetched from the Azure Function.
 
 ## Summary
 
-🎉 **Congratulations** 🎉 - You just successfully 
+🎉 **Congratulations** 🎉 - You just successfully
 
-- provisioned the infrastrusture for a Sales Order App on SAP BTP including a connection to an SAP S/4HANA system hosted on Azure via the Private Link Service
+- provisioned the infrastructure for a Sales Order App on SAP BTP including a connection to an SAP S/4HANA system hosted on Azure via the Private Link Service
 - deployed the UI5 app to SAP BTP
 - provisioned the infrastructure for an Azure Function on Azure
-- deployed an Azure Function app to Azure 
-- connected the Azure Fucntion to the UI5 app leveraging the Destination service on SAP BTP
+- deployed an Azure Function app to Azure
+- connected the Azure Function to the UI5 app leveraging the Destination service on SAP BTP
 
-by using Terraform ... in less than 90 minutes. Not too shaby, right.
+by using Terraform in less than 90 minutes. Not too shabby, right?
 
-What remains to say ... onwards and upwards with Terraform!
+What remains to say ... **onwards and upwards with Terraform!**
+
+Well maybe one more thing: Would you like to destroy all the stuff you just created with **one** command? Then go to [exercise 4](../exercise4/README.md) and follow the instructions there.

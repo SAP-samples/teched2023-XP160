@@ -2,7 +2,7 @@ import { app } from "@azure/functions";
 
 app.http("fetchTrackingStatus", {
 	methods: ["GET"],
-	authLevel: "function",
+	authLevel: "anonymous",
 	handler: async (request, context) => {
 		context.log(
 			`HTTP triggered function processed request for url "${request.url}"`,
