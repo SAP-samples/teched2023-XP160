@@ -53,7 +53,7 @@ You must add a second entry into the array of destination objects with the data 
 ```bash
 {
    "Authentication"           = "NoAuthentication",
-   "Name"                     = "tracking-info",
+   "Name"                     = "dhl-shipping-function-on-azure",
    "Description"              = "Connection to Public Azure Function endpoint",
    "ProxyType"                = "",
    "Type"                     = "Internet",
