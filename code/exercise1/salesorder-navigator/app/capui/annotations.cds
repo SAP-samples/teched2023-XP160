@@ -26,12 +26,6 @@ annotate service.SalesOrderSet with @(
             $Type : 'UI.DataField',
             Label : 'CurrencyCode',
             Value : CurrencyCode,
-        },
-        {
-            $Type : 'UI.DataFieldForAction',
-            Label : 'Check Shipping via Azure',
-            Action: 'OrderService.checkSalesOrderShipping',
-            Inline: true
         }
     ]
 );
