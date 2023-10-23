@@ -40,7 +40,7 @@ Before starting with the exercise you will need to authenticate against your Azu
 To do so open a terminal and key in:
 
 ```bash
-azd login auth --client-id 9f68e1ab-1734-40b3-a2ac-2d3bb092e122 --client-secret <password> --tenant-id 0883e185-1d08-45d3-a798-26a32dd9e885
+azd auth login --client-id 9f68e1ab-1734-40b3-a2ac-2d3bb092e122 --client-secret <password> --tenant-id 0883e185-1d08-45d3-a798-26a32dd9e885
 ```
 
 This will trigger a login flow via your console. After successful login you will be able to use the `azd` CLI.
