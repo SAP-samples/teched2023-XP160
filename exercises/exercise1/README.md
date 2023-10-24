@@ -23,7 +23,7 @@ Look for the section with the variable `subaccount_id` and add a *default value*
 
 You find the subaccount ID in the SAP BTP Cockpit in the overview of your subaccount
 
-![Screenshot of SAP BTP subaccount overview](/exercises/exercise0/images/00_02_01.png)
+![Screenshot of SAP BTP subaccount overview](/exercises/exercise0/images/00_02_02.png)
 
 Paste the ID into the `variables.tf` file as a default value for the variable `subaccount_id` .
 
