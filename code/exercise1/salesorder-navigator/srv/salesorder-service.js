@@ -22,7 +22,7 @@ module.exports = cds.service.impl(async function() {
         } catch (error) {
             console.error(`Error: ${error?.message}`);
         }
-        return { response }
+        return "" + response.status + ", " + response.estimatedTimeOfDelivery;
      });
 
 });

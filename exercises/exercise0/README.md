@@ -8,17 +8,19 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 
     ![Screenshot of GitHub repository XP160](/exercises/exercise0/images/00_01_01.png)
 
-2. Click on the `Code` button, switch to the `Codespaces` tab and click on the button `Create codespace for ...`.
+> **Note** - If you do not yet have a user on GitHub, go to [https://github.com/](https://github.com/signup) and Sign-up to create a new user using an exiting email-adress. 
+
+3. Click on the `Code` button, switch to the `Codespaces` tab and click on the button `Create codespace for ...`.
 
     This will take a few minutes. Be patient 🙂
 
     ![Screenshot of navigation to Codespace creation in the repository XP160](/exercises/exercise0/images/00_01_02.png)
 
-3. While the codespace is created for you, you will see this screen
+4. While the codespace is created for you, you will see this screen
 
     ![Screenshot of setup screen for codespace](/exercises/exercise0/images/00_01_03.png)
 
-4. Once all is done, you are in your Codespace.
+5. Once all is done, you are in your Codespace.
 
     > **Note** - GitHub codespaces are free for a certain amount of time per month. For the hands-on session the free time is more than enough. **Don't forget to delete your codespace again after the hands-on session!**
 

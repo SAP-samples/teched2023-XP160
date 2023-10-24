@@ -121,6 +121,16 @@
                                                 "navigateToInstance": false
                                             }
                                         }
+                                    },
+                                    "columns": {
+                                        "CustomColButton": {
+                                            "header": "{i18n>shippingState}",
+                                            "position": {
+                                                "anchor": "DataField::CurrencyCode",
+                                                "placement": "After"
+                                            },
+                                            "template": "capui.ext.fragment.CustomColButton"
+                                        }
                                     }
                                 }
                             }

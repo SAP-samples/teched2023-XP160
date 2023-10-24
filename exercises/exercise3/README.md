@@ -117,6 +117,8 @@ After the successful execution of the update you should see two destinations in 
 
 Now it is time to validate that everything is working as expected. Open the UI5 app and check if the tracking information can be fetched from the Azure Function.
 
+![Screenshot of UI5 app with Azure Function trigger](/exercises/exercise3/images/03_02_01.png)
+
 ## Summary
 
 🎉 **Congratulations** 🎉 - You just successfully
