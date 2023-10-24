@@ -107,7 +107,7 @@ variable "globalaccount" {
 }
 ```
 
-You are now ready for the first steps in Terraform. Switch to the terminal and type-in the following commands followed by hitting the `return` key:
+You are now ready for the first steps in Terraform. Save the changes and switch to the terminal and type-in the following commands followed by hitting the `return` key:
 
 ```bash
 terraform init
@@ -206,6 +206,8 @@ terraform apply
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
 Once the script is finished successfully, you should see the created service key in your subaccount.
+
+![Screenshot of SAP Cockpit instance overview with the private Link service key](/exercises/exercise1/images/01_01_04a.png)
 
 This key i.e. the credentials that it provides are needed for the next exercise to configure the destination towards the SAP S/4HANA system.
 
