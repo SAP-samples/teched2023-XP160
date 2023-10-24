@@ -40,7 +40,13 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 
 ## Exercise 0.3: Add environment variables to your Codespace
 
-For the Terraform provider to work you must export the following environment variables in your Codespace. You can do this by opening a terminal and exporting the following variables:
+For the Terraform provider to work you must export the following environment variables in your Codespace. You can do this by opening a terminal and exporting the following variables.
+
+> **Note** - If the Terminal windows is not open, you can open it from Codespaces via the hamburger menu
+    
+![Screenshot of SAP BTP Subaccount overview](/exercises/exercise0/images/00_02_03.png)
+
+
 
 ```bash
 export BTP_USERNAME=<your SAP BTP username>
@@ -50,6 +56,10 @@ export CF_PASSWORD=<your SAP BTP password>
 ```
 
 Validate that the values are set via `echo $BTP_USERNAME` and `echo $BTP_PASSWORD`.
+
+![Screenshot of SAP BTP Subaccount overview](/exercises/exercise0/images/00_02_04.png)
+
+
 
 ## Summary
 
