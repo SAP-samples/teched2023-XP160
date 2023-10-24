@@ -53,6 +53,24 @@ variable "cf_org_id" {
 }
 ```
 
+### Add `cf_org_name`
+
+Look for the section with the `cf_org_name` and add a *default value*. That value is the Cloudfoundry org name from the Cloudfoundry environment instance.
+
+To get it, switch to your BTP cockpit, get into your subaccount and copy the id you see in the `Cloud Foundry Environment` section behind the field `Org Name`.
+
+![Screenshot of SAP BTP environment instance section](/exercises/exercise1/images/01_01_02a.png)
+
+Paste the ID into the `variables.tf` file as a default value for the variable `cf_org_name`.
+
+```terraform
+variable "cf_org_id" {
+  type        = string
+  description = "The Cloudfoundry org id in the subaccount."
+  default     = "<paste Org name here>"      
+}
+```
+
 ### Change `region`
 
 Change the *default value* for the `region` to `ap21`.
