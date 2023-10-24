@@ -280,6 +280,14 @@ When asked, if you really want to execute the plan, you should confirm by typing
 
 Once the script is finished successfully, you should see the created service instance in your service instance overview.
 
+![Screenshot of SAP Cockpit instance overview with the Destination Service](/exercises/exercise1/images/01_01_04b.png)
+
+Click on the Destination Service name to see the Destination details.
+
+![Screenshot of SAP Cockpit instance with the Destination Details](/exercises/exercise1/images/01_01_04c.png)
+
+
+
 ## Exercise 1.4: Setup SAP Build Workzone, standard edition
 
 As we want to host a UI5 application we need an application that can host this UI. We will use the *SAP Build Workzone, standard edition* to achieve this. This is an application so the resource we need is of the type [btp_subaccount_subscription](https://registry.terraform.io/providers/SAP/btp/latest/docs/resources/subaccount_subscription). As you can see from the documentation, the basic setup looks like this:
