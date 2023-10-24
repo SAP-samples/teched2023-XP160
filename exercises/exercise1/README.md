@@ -64,9 +64,9 @@ To get it, switch to your BTP cockpit, get into your subaccount and copy the id 
 Paste the ID into the `variables.tf` file as a default value for the variable `cf_org_name`.
 
 ```terraform
-variable "cf_org_id" {
+variable "cf_org_name" {
   type        = string
-  description = "The Cloudfoundry org id in the subaccount."
+  description = "The name of the Cloudfoundry organization"
   default     = "<paste Org name here>"      
 }
 ```
