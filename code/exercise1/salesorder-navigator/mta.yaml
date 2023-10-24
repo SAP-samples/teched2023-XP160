@@ -127,4 +127,4 @@ build-parameters:
   - builder: custom
     commands:
     - npm install --production
-    - npx cds build --production
+    - cds build --production
