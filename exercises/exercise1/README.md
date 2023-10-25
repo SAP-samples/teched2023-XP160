@@ -432,7 +432,7 @@ We must make explicit calls to the CF CLI, so the [local-exec Provisioner](https
 
 As we must execute it standalone we also must leverage a pseudo resource, the [*null_resource*](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) provided by Hashicorp.
 
-To execute the deployment ad the following code to your `main.tf` file:
+To execute the deployment add the following code to your `main.tf` file:
 
 ```terraform
 resource "null_resource" "cf_app_deploy" {
@@ -453,17 +453,28 @@ The code is quite comprehensive as it represents the steps you would execute in 
 
 > **Note** - Any tool or CLI that you want to execute via the `local-exec` Provisioner must be installed on your machine. We already did so when setting up the dev container that you use.
 
-The only think that is missing in the setup is the `var.cf_password`. It is defined in the `variables.tf` file but is never filled with a value. To achieve this, create a file called `terraform.tfvars` in the same folder as the `main.tf` file.
+The only think that is missing in the setup is the `var.username` and `var.cf_password`. It is defined in the `variables.tf` file but is never filled with a value. Open the `variables.tf` file and update the `variable "username"` and `variable "cf_password"` with the username and password provided to you. 
 
-Open the file and add the following data in it:
+```terraform
+variable "username" {
+  type        = string
+  description = "The user that should be assigned all necessary roles."
+  default = "XP160-0000ZZ@education.cloud.sap"
+}
+```
+and
 
-```text
-cf_password = "YOUR WORKSHOPUSER PASSWORD"
+```terraform
+variable "cf_password" {
+  type        = string
+  description = "The user that should be assigned all necessary roles."
+  default = "Password ZZZ"
+}
 ```
 
 Save and close the file.
 
-> **Note** - due to the naming convention `terraform.tfvars` Terraform will automatically inject the values defined in that file when you trigger a `terraform` command. As the variable `cf_password` is marked as `sensitive` it will not show up in any terminal output of Terraform.
+> **Note** - As the variable `cf_password` is marked as `sensitive` it will not show up in any terminal output of Terraform.
 
 Now we are ready to go to deploy the app. As we have added a new resource, we must first update the basic setup. Execute the following command:
 
