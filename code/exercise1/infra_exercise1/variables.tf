@@ -7,22 +7,25 @@ variable "globalaccount" {
 variable "subaccount_id" {
   type        = string
   description = "The subaccount id of the subaccount."
+  default = ""
 }
 
 variable "cf_org_id" {
   type        = string
   description = "The Cloudfoundry org id in the subaccount."
+  default = ""
 }
 
 variable "cf_org_name" {
   type        = string
   description = "The name of the Cloudfoundry organization"
+  default     = "cforg-te2023-xp160-ZZZ"
 }
 
 variable "region" {
   type        = string
   description = "The region where the sub account shall be created in."
-  default     = "us20"
+  default     = "ap21"
 }
 
 variable "s4_resource_id" {
@@ -31,7 +34,22 @@ variable "s4_resource_id" {
   default     = "/subscriptions/XXXXXXXXXXXXXXXXX/resourceGroups/ZZZZZZZZ/providers/Microsoft.Network/privateLinkServices/YYYYYYYYY"
 }
 
-# variable "username" {
-#   type        = string
-#   description = "The user that should be assigned all necessary roles."
-# }
+variable "username" {
+  type        = string
+  description = "The user that should be assigned all necessary roles."
+  default = "XP160-0000ZZ@education.cloud.sap"
+}
+
+variable "s4_connection_pw" {
+  type        = string
+  description = "Password for the destination to the S/4HANA system on Azure"
+  sensitive   = true
+  default = ""
+}
+
+#variable "cf_password" {
+#  type        = string
+#  description = "Password for Cloud Foundry"
+#  sensitive   = true
+#  default = ""
+#}
