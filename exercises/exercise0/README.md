@@ -8,23 +8,25 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 
     ![Screenshot of GitHub repository XP160](/exercises/exercise0/images/00_01_01.png)
 
-> **Note** - If you do not yet have a user on GitHub, go to [https://github.com/](https://github.com/signup) and Sign-up to create a new user using an exiting email-adress. 
+    > **Note** - If you do not yet have a user on GitHub, go to [https://github.com/](https://github.com/signup) and Sign-up to create a new user using an exiting email-address.
 
-3. Click on the `Code` button, switch to the `Codespaces` tab and click on the button `Create codespace for ...`.
+2. Click on this button and create the code space:
+
+   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=685140118&skip_quickstart=true&machine=basicLinux32gb&geo=SoutheastAsia&devcontainer_path=.devcontainer%2Fdevcontainer.json)
 
     This will take a few minutes. Be patient 🙂
 
     ![Screenshot of navigation to Codespace creation in the repository XP160](/exercises/exercise0/images/00_01_02.png)
 
-4. While the codespace is created for you, you will see this screen
+3. While the Codespace is created for you, you will see this screen
 
-    ![Screenshot of setup screen for codespace](/exercises/exercise0/images/00_01_03.png)
+    ![Screenshot of setup screen for Codespace](/exercises/exercise0/images/00_01_03.png)
 
-5. Once all is done, you are in your Codespace.
+4. Once all is done, you are in your Codespace.
 
     > **Note** - GitHub codespaces are free for a certain amount of time per month. For the hands-on session the free time is more than enough. **Don't forget to delete your codespace again after the hands-on session!**
 
-    ![Screenshot of GitHub Codespace view on the respository XP160](/exercises/exercise0/images/00_01_04.png)
+    ![Screenshot of GitHub Codespace view on the repository XP160](/exercises/exercise0/images/00_01_04.png)
 
 ## Exercise 0.2: Get the ID of your SAP BTP subaccount
 
@@ -43,10 +45,8 @@ We will use GitHub [Codespaces](https://docs.github.com/codespaces/overview) as 
 For the Terraform provider to work you must export the following environment variables in your Codespace. You can do this by opening a terminal and exporting the following variables.
 
 > **Note** - If the Terminal windows is not open, you can open it from Codespaces via the hamburger menu
-    
+
 ![Screenshot of SAP BTP Subaccount overview](/exercises/exercise0/images/00_02_03.png)
-
-
 
 ```bash
 export BTP_USERNAME=<your SAP BTP username>
@@ -58,8 +58,6 @@ export CF_PASSWORD=<your SAP BTP password>
 Validate that the values are set via `echo $BTP_USERNAME` and `echo $BTP_PASSWORD`.
 
 ![Screenshot of SAP BTP Subaccount overview](/exercises/exercise0/images/00_02_04.png)
-
-
 
 ## Summary
 
