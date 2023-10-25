@@ -127,7 +127,7 @@ In a next step we will see how Terraform is `plan`ing the scripts. Type-in the f
 terraform plan
 ```
 
-You should see a list of the planned steps for the Terraform script.
+You should see a list of the planned steps for the Terraform script. If not check the error message and see if your terraform configuration is complete. If not adjust further and try again after a `terraform init -upgrade`.
 
 > **Note** - If you get an error message here, this means, that you might not have completed the steps before correctly.
 
