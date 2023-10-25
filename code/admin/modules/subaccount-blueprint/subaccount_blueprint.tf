@@ -20,7 +20,7 @@ terraform {
 locals {
   name_prefix      = "te2023-XP160"
   name_suffix      = format("%03d", var.user_number)
-  subaccount_name  = "dryrun-${local.name_prefix}-${local.name_suffix}"
+  subaccount_name  = "${local.name_prefix}-${local.name_suffix}"
   cf_instance_name = lower("cf-${local.name_prefix}-${local.name_suffix}")
   cf_org_name      = lower("cforg-${local.name_prefix}-${local.name_suffix}")
 }
