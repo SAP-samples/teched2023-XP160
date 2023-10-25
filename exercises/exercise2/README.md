@@ -221,7 +221,7 @@ The last output will be the URL of your Azure Function. *Copy it to your clipboa
 
 ### Task 5 - Check the deployment
 
-Navigate to the Azure portal and check your resource group for the deployed resources. You should see the following resources:
+Navigate to the [Azure portal](https://portal.azure.com/?feature.customportal=false#@cloud.boban.co/resource/subscriptions/5e19a679-be96-4a30-953b-e3e4f9ca5f37/resourceGroups) and check your resource group for the deployed resources. You should see the following resources:
 
 ![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_01.png)
 
