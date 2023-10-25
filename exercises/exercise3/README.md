@@ -72,10 +72,10 @@ The final result should then look like this:
 # 1.3.0 Create destination service + destination to S/4HANA Cloud system
 # ------------------------------------------------------------------------------------------------------
 module "create_cf_service_instance_destination" {
-  source       = "../../admin/modules/cloudfoundry/cf-service-instance"
-  cf_space_id  = data.cloudfoundry_space.dev.id
-  service_name = "destination"
-  plan_name    = "lite"
+  source                = "../../admin/modules/cloudfoundry/cf-service-instance"
+  cf_space_id           = data.cloudfoundry_space.dev.id
+  service_instance_name = "salesorder-navigator-destination"
+  plan_name             = "lite"
   parameters = jsonencode({
     "HTML5Runtime_enabled" : "true",
     "init_data" : {
@@ -88,7 +88,7 @@ module "create_cf_service_instance_destination" {
             "Description"              = "SAP S/4HANA Connection via Private Link",
             "ProxyType"                = "PrivateLink",
             "Type"                     = "HTTP",
-            "URL"                      = "http://93549d77-6851-4178-ba3c-18720c5e5638.p3.pls.sap.internal:50000",
+            "URL"                      = "http://${resource.cloudfoundry_service_key.privatelink.credentials.additionalHostname:50000",
             "User"                     = "BPINST"
             "Password"                 = "${var.s4_connection_pw}"
             "HTML5.DynamicDestination" = "true"
@@ -100,7 +100,7 @@ module "create_cf_service_instance_destination" {
             "Description"              = "Connection to Public Azure Function endpoint",
             "ProxyType"                = "",
             "Type"                     = "Internet",
-            "URL"                      = "https://azfunc-tracking-abc123.azurewebsites.net/"
+            "URL"                      = "https://techedxp160-user0ZZ.azurewebsites.net/"
           }
         ]
       }
@@ -108,6 +108,8 @@ module "create_cf_service_instance_destination" {
   })
 }
 ```
+
+Make sure to switch to folder `/workspaces/teched2023-XP160/code/exercise1/infra_exercise1`.
 
 Save the changes and execute a `terraform apply`. The resulting plan should contain the change of the destination resource. If this is the case acknowledge the apply by keying in `yes`.
 
