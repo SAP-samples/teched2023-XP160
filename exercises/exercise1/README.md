@@ -17,6 +17,20 @@ If you open the respective folder in the explorer pane, you can click on the `ma
 
 Before you can start, you must provide some variables. Please open the `variables.tf` file in the respective folder.
 
+### Change `globalaccount`
+
+Look for the section with the variable `globalaccount` and change the *default value* to the value of the subdomain of the global account.
+
+![Screenshot of SAP BTP environment instance section](/exercises/exercise1/images/01_01_02b.png)
+
+```terraform
+variable "globalaccount" {
+  type        = string
+  description = "The globalaccount subdomain where the sub account shall be created."
+  default     = "a0ab1ce3-9dab-48b8-9122-524f7fde1f28"
+}
+```
+
 ### Add `subaccount_id`
 
 Look for the section with the variable `subaccount_id` and add a *default value*. That value is the subaccount ID from your BTP subaccount you saw in exercise 0.
@@ -95,19 +109,6 @@ variable "s4_resource_id" {
 }
 ```
 
-### Change `globalaccount`
-
-Look for the section with the variable `globalaccount` and change the *default value* to the value of the subdomain of the global account.
-
-![Screenshot of SAP BTP environment instance section](/exercises/exercise1/images/01_01_02b.png)
-
-```terraform
-variable "globalaccount" {
-  type        = string
-  description = "The globalaccount subdomain where the sub account shall be created."
-  default     = "<paste subdomain of the global account here>"
-}
-```
 
 You are now ready for the first steps in Terraform. Save the changes and switch to the terminal and type-in the following commands followed by hitting the `return` key:
 
@@ -199,7 +200,27 @@ resource "cloudfoundry_service_key" "privatelink" {
 }
 ```
 
-Save the changes and execute the Terraform script again:
+As you can see we take the Password to access the SAP System in the Destination from the variable s4_connection_pw. Open the variables.tf file and look for the section with the variable `s4_connection_pw` and change the *default value* to the value, that the session instructors will give you for the password
+
+```terraform
+variable "s4_connection_pw" {
+  type        = string
+  description = "Password for the destination to the S/4HANA system on Azure"
+  sensitive   = true
+  default = "xxx"
+}
+```
+
+Save the changes!
+
+Since we are now using a new module (`create_cf_service_instance_destination`), we also need to run `terraform init` to install all modules required by this configuration. 
+```bash
+terraform init
+```
+
+
+
+ Now we can execute the Terraform script again:
 
 ```bash
 terraform apply
@@ -272,7 +293,8 @@ module "create_cf_service_instance_destination" {
 }  
 ```
 
-Save the changes and execute the Terraform script again:
+
+Save and execute the Terraform script again:
 
 ```bash
 terraform apply
@@ -353,6 +375,34 @@ resource "btp_subaccount_role_collection_assignment" "launchpad_admin" {
 }
 ```
 
+Before we can run terraform apply again, we need to add a required provider. Open the `provider.tf` files and search for the `btp` in the `required_providers` sections. 
+Add
+
+```terraform
+     btp = {
+       source  = "SAP/btp"
+       version = "0.5.0-beta1"
+     }
+```
+
+The provider needs the `globalaccount` variable, which we need to reference from our `variables.tf` file updated before. So make sure to add that as well to the `provider.tf` file.
+
+```terraform
+ provider "btp" {
+   globalaccount = var.globalaccount
+ }
+```
+
+The result should look like this:
+![Screenshot of provider.tf file](/exercises/exercise1/images/01_01_04d.png)
+
+Save the changes and and run:
+```bash
+terraform init
+```
+
+
+
 Now you can add the two new resources to your setup as in the previous step. Save the changes and execute the Terraform script:
 
 ```bash
@@ -362,6 +412,9 @@ terraform apply
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
 Once the script is finished successfully, you should see the created app subscription as well as the role collection assignment to your user.
+
+![Screenshot of provider.tf file](/exercises/exercise1/images/01_01_04e.png)
+
 
 With that we have the necessary infrastructure in place and can proceed to deploy the UI5 application.
 
