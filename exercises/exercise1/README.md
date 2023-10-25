@@ -15,7 +15,7 @@ If you open the respective folder in the explorer pane, you can click on the `ma
 
 ![Screenshot of Codespace with main.tf](/exercises/exercise1/images/01_01_01.png)
 
-Before you can start, you must provide some variables. Please open the `variables.tf` file in the respective folder.
+Before you can start, you must provide some variables. Please open the `variables.tf` file in the `code/exercise1/infra_exercise` folder.
 
 ### Change `globalaccount`
 
@@ -200,27 +200,8 @@ resource "cloudfoundry_service_key" "privatelink" {
 }
 ```
 
-As you can see we take the Password to access the SAP System in the Destination from the variable s4_connection_pw. Open the variables.tf file and look for the section with the variable `s4_connection_pw` and change the *default value* to the value, that the session instructors will give you for the password
 
-```terraform
-variable "s4_connection_pw" {
-  type        = string
-  description = "Password for the destination to the S/4HANA system on Azure"
-  sensitive   = true
-  default = "xxx"
-}
-```
-
-Save the changes!
-
-Since we are now using a new module (`create_cf_service_instance_destination`), we also need to run `terraform init` to install all modules required by this configuration. 
-```bash
-terraform init
-```
-
-
-
- Now we can execute the Terraform script again:
+Save the changes and execute the Terraform script again:
 
 ```bash
 terraform apply
@@ -294,7 +275,26 @@ module "create_cf_service_instance_destination" {
 ```
 
 
-Save and execute the Terraform script again:
+As you can see we take the Password to access the SAP System in the Destination from the variable s4_connection_pw. Open the variables.tf file and look for the section with the variable `s4_connection_pw` and change the *default value* to the value, that the session instructors will give you for the password
+
+```terraform
+variable "s4_connection_pw" {
+  type        = string
+  description = "Password for the destination to the S/4HANA system on Azure"
+  sensitive   = true
+  default = "xxx"
+}
+```
+
+Save the changes. 
+Since we are now using a new module (`create_cf_service_instance_destination`), we also need to run `terraform init` to install all modules required by this configuration. 
+
+```bash
+terraform init
+```
+
+
+Then execute the Terraform script again:
 
 ```bash
 terraform apply
