@@ -496,6 +496,6 @@ After successful execution open the SAP BTP Cockpit, navigate to your subaccount
 
 ## Summary
 
-You've now confirmed access to your Subaccount. We will  continue to use this space and deploy and SAP Fiori app which is connected to an SAP System running on Azure. Since both the SAP Business Technology Platform and the SAP system is running on Azure, we can use SAP Private Link Service to make the connection even more secure and ensuring that data never leaves the Azure backbone.  
+You've now confirmed access to your Subaccount. We continued using this space to deploy an SAP Fiori app, which is connected to an SAP S/4HANA Cloud, private edition instance running on Azure. Since both the SAP Business Technology Platform and the SAP system are running on Azure, we were able to use SAP Private Link Service to make the connection even more secure and ensuring that data never leaves the Azure backbone.  
 
 Continue to - [Exercise 2 - Add Tracking Information to the Sales Order](../exercise2/README.md)
