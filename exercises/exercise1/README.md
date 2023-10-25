@@ -99,6 +99,8 @@ variable "s4_resource_id" {
 
 Look for the section with the variable `globalaccount` and change the *default value* to the value of the subdomain of the global account.
 
+![Screenshot of SAP BTP environment instance section](/exercises/exercise1/images/01_01_02b.png)
+
 ```terraform
 variable "globalaccount" {
   type        = string
