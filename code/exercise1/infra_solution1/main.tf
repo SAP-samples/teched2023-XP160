@@ -57,8 +57,8 @@ module "create_cf_service_instance_destination" {
 //            "Authentication" = "NoAuthentication",
 //            "Name"           = "dhl-shipping-function-on-azure",
 //            "Description"    = "Connection to Public Azure Function endpoint",
-//            "ProxyType"      = "",
-//            "Type"           = "Internet",
+//            "ProxyType"      = "Internet",
+//            "Type"           = "HTTP",
 //            "URL"            = "https://..."
 //          }
         ]
