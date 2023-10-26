@@ -14,6 +14,5 @@ export TF_VAR_function_app_url=$AZFUNC_APP_URL
 echo "Constructing Azure Function URL"
 terraform apply -auto-approve
 
-# Output of raw value (DO NOT DO THIS IN PRODUCTIVE SCENARIOS AS SENSTIVE DATA IS CONTAINED)
-echo "DO NOT DO THIS IN PRODUCTIVE SCENARIOS AS SENSTIVE DATA IS CONTAINED"
+echo "The URL of the Azure Function endpoint"
 terraform output -raw FUNCTION_URL
