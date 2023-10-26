@@ -163,7 +163,7 @@ Great! It seems that our setup of the resources is complete now. But how can we 
 It is time to check what will be deployed to your Azure subscription. To do so, you can use the `azd provision --preview` command. This command will show you the planned infrastructure deployment.
 
 ```bash
-cd code/exercise2/
+cd /workspaces/teched2023-XP160/code/exercise2
 azd provision --preview
 ```
 
@@ -218,6 +218,11 @@ azd up
 Follow the output of the command to check what is happening. Maybe you will even be rewarded with a little ASCII firework after the infrastructure is provisioned.
 
 The last output will be the URL of your Azure Function. *Copy it to your clipboard*, you will need it later when updating the destination in SAP BTP.
+
+> **Note** -- You might need to scroll up a little and extract the URL
+
+![Screenshot of the Azure Portal - Overview Resource Group](./images/02_01_00.png)
+
 
 ### Task 5 - Check the deployment
 

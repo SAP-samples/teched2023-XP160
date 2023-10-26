@@ -3,7 +3,7 @@ module "project_setup" {
   count  = 6
   source = "./modules/subaccount-blueprint/"
 
-  user_number   = format("%06d", count.index + 1)
+  user_number   = format("%03d", count.index + 1)
   globalaccount = var.globalaccount
   region        = var.region
   admins        = var.subaccount_users
