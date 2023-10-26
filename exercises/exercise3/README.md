@@ -55,9 +55,9 @@ You must add a second entry into the array of destination objects with the data 
    "Authentication"           = "NoAuthentication",
    "Name"                     = "dhl-shipping-function-on-azure",
    "Description"              = "Connection to Public Azure Function endpoint",
-   "ProxyType"                = "",
-   "Type"                     = "Internet",
-   "URL"                      = "<URL to your Azure Functions Endpoint>",
+   "ProxyType"                = "Internet",
+   "Type"                     = "HTTP",
+   "URL"                      = "<URL to your Azure Functions Endpoint>"
 }
 ```
 
