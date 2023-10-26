@@ -8,8 +8,9 @@ This repository contains the material for the [SAP TechEd 2023 session XP160 - U
 
 ## Overview
 
-This session introduces attendees to Terraform as the de-facto standard for infrastructure as code.
-You will get hands-on experience with deploying and provisioning your apps running on SAP Business Technology Platform (SAP BTP) that integrate with Microsoft Azure services using the SAP Private Link service.
+This session introduces attendees to Terraform as the de-facto standard for infrastructure as code. You will get hands-on experience with deploying and provisioning your apps cross-cloud running on SAP Business Technology Platform (SAP BTP) that integrate with Microsoft Azure services using the SAP Private Link service.
+
+![Architecture Overview](/exercises/get_started/use-case.png)
 
 Leverage the new Terraform provider for SAP BTP to automate the setup of your SAP BTP accounts along with Terraform for Azure.
 
