@@ -18,3 +18,15 @@ variable "cf_users" {
   type        = list(string)
   description = "The list of users with respective rights"
 }
+
+variable "cf_username" {
+  type        = string
+  description = "Username for Cloud Foundry to use CF CLI for space user creation"
+  sensitive   = true
+}
+
+variable "cf_password" {
+  type        = string
+  description = "Password for Cloud Foundry to use CF CLI for space user creation"
+  sensitive   = true
+}

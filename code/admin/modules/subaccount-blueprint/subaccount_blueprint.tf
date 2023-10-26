@@ -102,8 +102,12 @@ module "cloudfoundry_environment" {
 module "cloudfoundry_space" {
   source              = "../cloudfoundry/cf-space"
   cf_org_id           = module.cloudfoundry_environment.org_id
+  cf_org_name         = local.cf_org_name
+  region              = lower(var.region)
   name                = "dev"
   cf_space_managers   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
   cf_space_developers = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
   cf_space_auditors   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  cf_username         = var.cf_username
+  cf_password         = var.cf_password
 }
