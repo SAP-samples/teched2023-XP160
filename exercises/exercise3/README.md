@@ -119,6 +119,8 @@ Now it is time to validate that everything is working as expected. Open the UI5 
 
 ![Screenshot of UI5 app with Azure Function trigger](/exercises/exercise3/images/03_02_01.png)
 
+![Screenshot of shipping state popup](/exercises/exercise3/images/03_02_02.png)
+
 ## Summary
 
 🎉 **Congratulations** 🎉 - You just successfully
