@@ -1,6 +1,6 @@
 
 module "project_setup" {
-  count  = 1
+  count  = 6
   source = "./modules/subaccount-blueprint/"
 
   user_number   = format("%03d", count.index + 1)
