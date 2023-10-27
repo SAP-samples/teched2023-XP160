@@ -115,7 +115,7 @@ Save the changes and execute a `terraform apply`. The resulting plan should cont
 
 After the successful execution of the update you should see two destinations in the destination service.
 
-### Task 2 - Validate the availability of the destination
+### Task 2 - Validate the availability of the new destination by using the UI5 app
 
 Now it is time to validate that everything is working as expected. Open the UI5 app and check if the tracking information can be fetched from the Azure Function.
 
