@@ -1,0 +1,8 @@
+globalaccount    = "provided by your session instructor"
+subaccount_id    = "check in your subaccount"
+cf_org_id        = "check in your subaccount"
+region           = "ap21"
+s4_resource_id   = "provided by your session instructor"
+username         = "provided by your session instructor"
+s4_connection_pw = "provided by your session instructor"
+cf_password      = "provided by your session instructor"

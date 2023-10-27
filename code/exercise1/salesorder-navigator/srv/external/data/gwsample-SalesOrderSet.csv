@@ -1,0 +1,2 @@
+SalesOrderID;Note;CustomerID;CustomerName;GrossAmount;CurrencyCode
+1234;A Note;1234;SAP;100;EUR

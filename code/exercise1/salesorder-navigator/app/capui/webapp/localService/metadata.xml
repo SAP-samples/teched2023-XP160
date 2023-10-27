@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="OrderService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="SalesOrderSet" EntityType="OrderService.SalesOrderSet"/>
+            </EntityContainer>
+            <EntityType Name="SalesOrderSet">
+                <Key>
+                    <PropertyRef Name="SalesOrderID"/>
+                </Key>
+                <Property Name="SalesOrderID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="Note" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CustomerName" Type="Edm.String" MaxLength="80"/>
+                <Property Name="GrossAmount" Type="Edm.Decimal" Scale="3" Precision="16"/>
+                <Property Name="CurrencyCode" Type="Edm.String" MaxLength="5"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

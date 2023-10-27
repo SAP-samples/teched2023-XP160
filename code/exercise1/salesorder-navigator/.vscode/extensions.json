@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"SAPSE.vscode-cds",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"mechatroner.rainbow-csv",
+		"qwtel.sqlite-viewer",
+		"humao.rest-client",
+		"sdras.night-owl"
+	],
+	"unwantedRecommendations": [
+
+	]
+}

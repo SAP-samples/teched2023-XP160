@@ -1,0 +1,50 @@
+{
+	"name": "Devcontainer TechEd 2023 - XP160",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "bullseye"
+		}
+	},
+	//"image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/azure/azure-dev/azd:latest": {},
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "1.5.7"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"HashiCorp.terraform",
+				"GitHub.vscode-github-actions",
+				"ms-azuretools.azure-dev",
+				"ms-azuretools.vscode-azurefunctions",
+				"ms-azuretools.vscode-docker",
+				"humao.rest-client"
+			]
+		}
+	},
+	"remoteUser": "node",
+	//Ensure that workspace is configured as safe directory and enable alpha feature for Terraform usage
+	"postCreateCommand": "git config --global --add safe.directory /workspaces/teched2023-XP160 && chmod a+x /workspaces/teched2023-XP160/code/exercise2/hooks/*.sh && cf install-plugin multiapps -f",
+	"forwardPorts": [
+		7071
+	],
+	"hostRequirements": {
+		"memory": "8gb"
+	},
+	// This devcontainer expects a file named .devcontainer/devcontainer.env to exist.
+	// you should place the following environment variables in that file:
+	// - BTP_USERNAME
+	// - BTP_PASSWORD
+	//"runArgs": [
+	//	"--env-file",
+	//	".devcontainer/devcontainer.env"
+	//]
+}

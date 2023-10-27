@@ -1,0 +1,15 @@
+# Placeholder for function URL. This should look like this:
+# @FUNCTION_APP_URL=https://azfunc-tracking-xyzabc.azurewebsites.net/api/fetchTrackingStatus
+@FUNCTION_APP_URL=<Put your value here>
+
+### REMOTE TEST: Try without tracking ID
+{{FUNCTION_APP_URL}}
+
+### REMOTE TEST: Try with tracking ID
+{{FUNCTION_APP_URL}}?trackingId=1234567890
+
+### LOCAL TEST: Try without tracking ID
+http://localhost:7071/api/fetchTrackingStatus
+
+### LOCAL TEST: Try with tracking ID
+http://localhost:7071/api/fetchTrackingStatus?trackingId=1234567890
