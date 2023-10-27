@@ -107,7 +107,8 @@ module "create_cf_service_instance_destination" {
       }
     }
   })
-}```
+}
+```
 
 Make sure to switch to folder `/workspaces/teched2023-XP160/code/exercise1/infra_exercise1`.
 
