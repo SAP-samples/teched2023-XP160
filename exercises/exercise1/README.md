@@ -401,8 +401,6 @@ Save the changes and and run:
 terraform init
 ```
 
-
-
 Now you can add the two new resources to your setup as in the previous step. Save the changes and execute the Terraform script:
 
 ```bash
@@ -414,7 +412,6 @@ When asked, if you really want to execute the plan, you should confirm by typing
 Once the script is finished successfully, you should see the created app subscription as well as the role collection assignment to your user.
 
 ![Screenshot of provider.tf file](/exercises/exercise1/images/01_01_04e.png)
-
 
 With that we have the necessary infrastructure in place and can proceed to deploy the UI5 application.
 
@@ -490,9 +487,15 @@ terraform apply
 
 When asked, if you really want to execute the plan, you should confirm by typing `yes` and hit the `return` key.
 
-After successful execution open the SAP BTP Cockpit, navigate to your subaccount and open the app located in the `HTML5 Applications` section. The app should open and look like this:
+## Exercise 1.6: Open the UI5 application
 
-![Screenshot of UI5 app - master detail view on sales orders](/exercises/exercise1/images/01_01_05.png)
+After successful execution open the SAP BTP Cockpit, navigate to your subaccount and open the app located in the `HTML5 Applications` section from the top level screen.
+
+![Screenshot of HTML5 applications section](/exercises/exercise1/images/01_01_05.png)
+
+The app should open and look like this (note the "Request from Azure" button will start working once we have completed exercise 3"):
+
+![Screenshot of UI5 app - master detail view on sales orders](/exercises/exercise1/images/01_01_06.png)
 
 ## Summary
 
