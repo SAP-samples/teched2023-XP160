@@ -50,9 +50,9 @@ For the Terraform provider to work you must export the following environment var
 
 ```bash
 export BTP_USERNAME=<your SAP BTP username>
-export BTP_PASSWORD=<your SAP BTP password>
+export BTP_PASSWORD='<your SAP BTP password>'
 export CF_USER=<your SAP BTP username>
-export CF_PASSWORD=<your SAP BTP password>
+export CF_PASSWORD='<your SAP BTP password>'
 ```
 
 Validate that the values are set via `echo $BTP_USERNAME` and `echo $BTP_PASSWORD`.
