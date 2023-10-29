@@ -71,7 +71,7 @@ resource "btp_subaccount_entitlement" "cfmemory" {
 resource "btp_subaccount_role_collection_assignment" "subaccount-administrators" {
   subaccount_id        = btp_subaccount.this.id
   role_collection_name = "Subaccount Administrator"
-  for_each             = toset(concat(var.admins, ["XP160-${var.user_number}@education.cloud.sap"]))
+  for_each             = toset(concat(var.admins, ["xp160-${var.user_number}@education.cloud.sap"]))
   user_name            = each.value
   depends_on           = [btp_subaccount.this]
 }
@@ -79,7 +79,7 @@ resource "btp_subaccount_role_collection_assignment" "subaccount-administrators"
 resource "btp_subaccount_role_collection_assignment" "subaccount-service-administrators" {
   subaccount_id        = btp_subaccount.this.id
   role_collection_name = "Subaccount Service Administrator"
-  for_each             = toset(concat(var.admins, ["XP160-${var.user_number}@education.cloud.sap"]))
+  for_each             = toset(concat(var.admins, ["xp160-${var.user_number}@education.cloud.sap"]))
   user_name            = each.value
   depends_on           = [btp_subaccount.this]
 }
@@ -92,7 +92,7 @@ module "cloudfoundry_environment" {
   subaccount_id         = btp_subaccount.this.id
   instance_name         = local.cf_instance_name
   cloudfoundry_org_name = local.cf_org_name
-  cf_org_members        = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  cf_org_members        = concat(var.cf_users, ["xp160-${var.user_number}@education.cloud.sap"])
   depends_on            = [btp_subaccount_entitlement.cfmemory]
 }
 
@@ -105,9 +105,9 @@ module "cloudfoundry_space" {
   cf_org_name         = local.cf_org_name
   region              = lower(var.region)
   name                = "dev"
-  cf_space_managers   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
-  cf_space_developers = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
-  cf_space_auditors   = concat(var.cf_users, ["XP160-${var.user_number}@education.cloud.sap"])
+  cf_space_managers   = concat(var.cf_users, ["xp160-${var.user_number}@education.cloud.sap"])
+  cf_space_developers = concat(var.cf_users, ["xp160-${var.user_number}@education.cloud.sap"])
+  cf_space_auditors   = concat(var.cf_users, ["xp160-${var.user_number}@education.cloud.sap"])
   cf_username         = var.cf_username
   cf_password         = var.cf_password
 }
